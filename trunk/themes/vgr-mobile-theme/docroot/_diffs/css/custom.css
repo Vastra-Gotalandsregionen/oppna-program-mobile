@@ -16,6 +16,20 @@
 }
 */
 
+.portlet .app-icon,
+.portlet.navigation {
+	background: transparent;
+}
+
+.portlet,
+.portlet-static.app-icon {
+	background: #fff;
+}
+
+.portlet-static.app-icon {
+	width: 100%;
+}
+
 /* LOGIN
 ================================================================================ */
 
