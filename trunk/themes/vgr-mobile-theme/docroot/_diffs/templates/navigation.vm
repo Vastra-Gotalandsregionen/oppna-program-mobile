@@ -1,13 +1,36 @@
-<div class="portlet navigation">
-	#*
-	<?php if ($page == "start") : ?><h1>Start</h1><?php endif; ?>
-	<?php if ($page == "mitt-jobb") : ?><h1>Mitt jobb</h1><?php endif; ?>
-	<?php if ($page == "vard") : ?><h1>Vård</h1><?php endif; ?>
-	<?php if ($page == "vardaktorsportalen") : ?><h1>Vårdaktörsportalen</h1><?php endif; ?>
-	<?php if ($page == "hitta") : ?><h1>Hitta</h1><?php endif; ?>
-	*#
-	<h1>Start</h1>
+#if($layout_mobile_start_page != $null)
+	#set($layouts_mobile = $layout_mobile_start_page.getChildren())
+#else
+	#set($layouts_mobile = $null)	
+#end	
 
+<div class="portlet navigation">
+	<h1>$layout.getName($locale)</h1>
+	
+	#if($layouts_mobile != $null)
+		#if($layouts_mobile.size() > 0)
+			
+			
+			
+			<ul class="navigate-page">
+    			#foreach($layout_mobile in $layouts_mobile)
+					
+					#if($layout.getLayoutId() == $layout_mobile.getLayoutId())
+						#set($layout_mobile_selected_class = "sel")
+					#else
+						#set($layout_mobile_selected_class = "")
+					#end
+					<li class="$layout_mobile_selected_class">
+						##<a href="$layout_mobile.getFriendlyURL()">$layout_mobile.getName($locale)</a>
+						<a href="$layout_mobile.getRegularURL($request)">$layout_mobile.getName($locale)</a>
+					</li>
+    			
+    			#end
+			</ul>
+		#end
+	#end
+
+	#*
 	<ul class="navigate-page">
 		<li class="sel"><a href="home.html?page=start">Start</a></li>
 		<li><a href="#will-be-mitt-jobb">Mitt jobb</a></li>
@@ -15,6 +38,7 @@
 		<li><a href="#will-bevardaktorsportalen">V&aring;rdakt&ouml;rsportalen</a></li>
 		<li><a href="#will-be-hitta">Hitta</a></li>
 	</ul>
+	*#
 	
 	#*
 	<ul class="navigate-page">
