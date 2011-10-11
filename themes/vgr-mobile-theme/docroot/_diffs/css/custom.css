@@ -16,14 +16,19 @@
 }
 */
 
+.portlet,
 .portlet .app-icon,
 .portlet.navigation {
 	background: transparent;
 }
 
-.portlet,
+.portlet-static,
 .portlet-static.app-icon {
 	background: #fff;
+}
+
+.portlet-login {
+	background: transparent;
 }
 
 .portlet-static.app-icon {
