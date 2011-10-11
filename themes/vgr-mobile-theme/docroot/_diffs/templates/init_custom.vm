@@ -1,0 +1,57 @@
+## ---------- Null ---------- ##
+#set ($null = $someNeverUserVariable)
+
+## ---------- Classes ---------- ##
+
+#set($class_name_company = "com.liferay.portal.model.Company")
+
+## ---------- Expando ---------- ##
+
+#set($expando_default_table = "CUSTOM_FIELDS")
+
+#set( $exp_col_mobile_start_page = "MOBILE_START_PAGE" )
+
+
+## ---------- Services ---------- ##
+#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutLocalService"))
+
+
+## ---------- Expando Values ---------- ##
+
+#set ( $layout_id_mobile_start_page = $expandoValueLocalService.getData(
+	$company_id, $class_name_company, $expando_default_table, $exp_col_mobile_start_page, $company_id, 0) )
+
+
+## ---------- Mobile Start Page ---------- ##
+
+## Else statement is a temporary fallback when before mobile settings portlet is configured correctly). When mobile settings is configured the if logic is not needed.
+
+#if($layout_id_mobile_start_page > 0)
+	#set($layout_mobile_start_page = $layoutLocalService.getLayout($group_id, true, $layout_id_mobile_start_page) )
+#else
+	#set($layout_mobile_start_page = $layoutLocalService.getFriendlyURLLayout($group_id, true, "/mobil") )	
+#end
+
+
+## ---------- Temporary code when running test environment in SP1 and dev in SP2 ---------- ##
+#set($is_sp1 = false)
+#set($is_sp2 = false)
+
+#set ($releaseLocalService = $serviceLocator.findService("com.liferay.portal.service.ReleaseLocalService"))
+#set($releaseCount = $releaseLocalService.getReleaseCount())
+#set($releases = $releaseLocalService.getReleases(0, $releaseCount))
+#set($releaseIterator = 0)
+#set($releaseMain = $null)
+#foreach($release in $releases)
+	#if($releaseIterator == 0)
+		#set($releaseMain = $release)
+	#end
+#end
+#if($releaseMain != $null)
+	#if($releaseMain.getBuildNumber() == "6011")
+		#set($is_sp1 = true)
+	#elseif($releaseMain.getBuildNumber() == "6012")
+		#set($is_sp2 = true)
+	#end
+#end
+
