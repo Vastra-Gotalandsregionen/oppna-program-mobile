@@ -4,12 +4,17 @@
 ## ---------- Classes ---------- ##
 
 #set($class_name_company = "com.liferay.portal.model.Company")
+#set($class_name_group = "com.liferay.portal.model.Group")
 
 ## ---------- Expando ---------- ##
 
 #set($expando_default_table = "CUSTOM_FIELDS")
 
 #set( $exp_col_mobile_start_page = "MOBILE_START_PAGE" )
+
+#set( $exp_col_mobile_article_1 = "MOBILE_ARTICLE_1" )
+#set( $exp_col_mobile_article_2 = "MOBILE_ARTICLE_2" )
+#set( $exp_col_mobile_article_3 = "MOBILE_ARTICLE_3" )
 
 
 ## ---------- Services ---------- ##
@@ -18,40 +23,43 @@
 
 ## ---------- Expando Values ---------- ##
 
-#set ( $layout_id_mobile_start_page = $expandoValueLocalService.getData(
-	$company_id, $class_name_company, $expando_default_table, $exp_col_mobile_start_page, $company_id, 0) )
+##
 
+#set ( $layout_id_mobile_start_page = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_start_page, $group_id) )
+	
+#set ( $article_id_mobile_article_1 = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_article_1, $group_id, "") )
+
+#set ( $article_id_mobile_article_2 = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_article_2, $group_id, "") )
+
+#set ( $article_id_mobile_article_3 = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_article_3, $group_id, "") )
+	
 
 ## ---------- Mobile Start Page ---------- ##
 
-## Else statement is a temporary fallback when before mobile settings portlet is configured correctly). When mobile settings is configured the if logic is not needed.
+#set($layout_mobile_start_page = $layoutLocalService.getLayout($group_id, true, $layout_id_mobile_start_page) )	
+	
+## ---------- Tabs ---------- ##
 
-#if($layout_id_mobile_start_page > 0)
-	#set($layout_mobile_start_page = $layoutLocalService.getLayout($group_id, true, $layout_id_mobile_start_page) )
-#else
-	#set($layout_mobile_start_page = $layoutLocalService.getFriendlyURLLayout($group_id, true, "/mobil") )	
+#set($show_tabs = $is_signed_in)
+
+#set ($mobile_article_template_id=$null)
+
+#set($mobile_article_1_content=$journalContentUtil.getContent($group_id, $article_id_mobile_article_1, $mobile_article_template_id, "$locale", $theme_display))
+#set($mobile_article_2_content=$journalContentUtil.getContent($group_id, $article_id_mobile_article_2, $mobile_article_template_id, "$locale", $theme_display))
+#set($mobile_article_3_content=$journalContentUtil.getContent($group_id, $article_id_mobile_article_3, $mobile_article_template_id, "$locale", $theme_display))
+
+#if($mobile_article_1_content == $null)
+	#set($mobile_article_1_content = "")
+#end
+#if($mobile_article_2_content == $null)
+	#set($mobile_article_2_content = "")
+#end
+#if($mobile_article_2_content == $null)
+	#set($mobile_article_2_content = "")
 #end
 
-
-## ---------- Temporary code when running test environment in SP1 and dev in SP2 ---------- ##
-#set($is_sp1 = false)
-#set($is_sp2 = false)
-
-#set ($releaseLocalService = $serviceLocator.findService("com.liferay.portal.service.ReleaseLocalService"))
-#set($releaseCount = $releaseLocalService.getReleaseCount())
-#set($releases = $releaseLocalService.getReleases(0, $releaseCount))
-#set($releaseIterator = 0)
-#set($releaseMain = $null)
-#foreach($release in $releases)
-	#if($releaseIterator == 0)
-		#set($releaseMain = $release)
-	#end
-#end
-#if($releaseMain != $null)
-	#if($releaseMain.getBuildNumber() == "6011")
-		#set($is_sp1 = true)
-	#elseif($releaseMain.getBuildNumber() == "6012")
-		#set($is_sp2 = true)
-	#end
-#end
 
