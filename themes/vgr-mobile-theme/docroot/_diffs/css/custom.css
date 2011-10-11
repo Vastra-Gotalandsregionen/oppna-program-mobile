@@ -1,0 +1,89 @@
+@import url(css.css);
+@import url(mobile.css);
+
+/*- Push header down to cater for dockbar when signed in -*/
+.signed-in #header {
+	top: 30px;
+}
+
+.signed-in #content {
+	padding-top: 79px;
+}
+
+/*
+.portlet-static {
+	background: #fff;
+}
+*/
+
+.portlet .app-icon,
+.portlet.navigation {
+	background: transparent;
+}
+
+.portlet,
+.portlet-static.app-icon {
+	background: #fff;
+}
+
+.portlet-static.app-icon {
+	width: 100%;
+}
+
+/* LOGIN
+================================================================================ */
+
+.portlet-login {
+	display:table;
+	width:100%;
+	height:100%;
+	padding:0;
+	border:0;
+	color:#fff;
+	background:#1d2527;
+}
+.portlet-login .portlet {
+	display:table-cell;
+	text-align:center;
+	vertical-align:middle;
+	padding-bottom:20px;
+}
+.portlet-login .portlet form {
+	display:inline-block;
+	width:280px;
+	margin:10px 0;
+	padding:10px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	background:#000;
+	text-align:left;
+}
+.portlet-login .portlet h1 {
+	margin:0 0 7px;
+	font-size:17px;
+}
+.portlet-login .portlet .text {margin-bottom:10px;}
+.portlet-login .portlet label {
+	display:block;
+	margin:0 0 3px;
+	font-weight:bold;
+	font-size:13px;
+}
+.portlet-login .portlet input {
+	display:inline-block;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:4px;
+	font:bold 14px "Helvetica Neue", Helvetica, sans-serif;
+}
+.portlet-login .portlet input:not([type="submit"]) {
+	width:100%;
+}
+
+.portlet-login .navigation,
+.portlet-login .aui-field-choice,
+.portlet-login .portlet-title .icon	 {
+	display: none;
+}
