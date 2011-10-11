@@ -13,7 +13,9 @@
 
 <body class="$css_class">
 
-$theme.include($body_top_include)
+#if($is_sp2)	
+	$theme.include($body_top_include)
+#end
 
 #if ($is_signed_in)
 	#dockbar()

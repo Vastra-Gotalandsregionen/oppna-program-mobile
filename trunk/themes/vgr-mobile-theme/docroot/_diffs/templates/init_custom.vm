@@ -30,5 +30,28 @@
 	#set($layout_mobile_start_page = $layoutLocalService.getLayout($group_id, true, $layout_id_mobile_start_page) )
 #else
 	#set($layout_mobile_start_page = $layoutLocalService.getFriendlyURLLayout($group_id, true, "/mobil") )	
-#end	
+#end
+
+
+## ---------- Temporary code when running test environment in SP1 and dev in SP2 ---------- ##
+#set($is_sp1 = false)
+#set($is_sp2 = false)
+
+#set ($releaseLocalService = $serviceLocator.findService("com.liferay.portal.service.ReleaseLocalService"))
+#set($releaseCount = $releaseLocalService.getReleaseCount())
+#set($releases = $releaseLocalService.getReleases(0, $releaseCount))
+#set($releaseIterator = 0)
+#set($releaseMain = $null)
+#foreach($release in $releases)
+	#if($releaseIterator == 0)
+		#set($releaseMain = $release)
+	#end
+#end
+#if($releaseMain != $null)
+	#if($releaseMain.getBuildNumber() == "6011")
+		#set($is_sp1 = true)
+	#elseif($releaseMain.getBuildNumber() == "6012")
+		#set($is_sp2 = true)
+	#end
+#end
 
