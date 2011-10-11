@@ -1,0 +1,134 @@
+<div class="tabs">
+	<section class="portlet tab tab-1 workwatch">
+		<div class="portlet-content">
+			<ul class="utilities">
+				<li>
+					<h2><a href="inactive"><span></span>Mina genv&auml;gar</a></h2>
+					<form action="." class="add">
+						<label for="url">Webbadress</label>
+						<input type="url" name="url" id="url" />
+						<input type="submit" value="L&auml;gg till" />
+					</form>
+					<ul class="shortcuts">
+						<li><a href="http://www.geblod.nu/">Ge Blod</a></li>
+						<li><a href="http://www.sahlgrenska.se/sv/SU/Forskning/Bibliotek/">Medicinska biblioteken</a></li>
+						<li><a href="http://www.ncbi.nlm.nih.gov/pubmed/">NCBI - PubMed</a></li>
+						<li><a href="http://www.bartleby.com/107/">Gray, Henry "Anatomy of the human body"</a></li>
+						<li><a href="http://www.internetmedicin.se/">Internetmedicin</a></li>
+						<li><a href="http://www.wheelessonline.com/">Wheeless' textbook of orthopaedics</a></li>
+						<li><a href="http://www.arthrex.com/">Arthrex</a></li>
+						<li><a href="http://www.boneandjointdecade.org/">Bone and joint decade's musculoskeletal portal</a></li>
+						<li><a href="http://www.fass.se/LIF/home/index.jsp">Fass</a></li>
+						<li><a href="http://www.ortopedi.se/index1.asp?siteid=1&amp;pageid=1">Svensk ortopedisk f&ouml;rening</a></li>
+						<li><a href="http://www.sls.se/">Svenska L&auml;kares&auml;llskapet</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="inactive"><span></span>Mina kontakter</a></h2>
+					<ul>
+						<li><a href="inactive">Lorem</a></li>
+						<li><a href="inactive">Ipsum</a></li>
+						<li><a href="inactive">Dolor</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="inactive"><span></span>Mina uppgifter <em class="status">3 kvar</em></a></h2>
+					<form action="." class="add">
+						<label for="todo">Att g&ouml;ra</label>
+						<input type="text" name="todo" id="todo" />
+						<input type="submit" value="L&auml;gg till" />
+					</form>
+					<form action="." class="todos">
+						<ul class="todos">
+							<li>
+								<div><input type="checkbox" name="todo" value="" class="todo" id="todo0" /></div>
+								<label for="todo0">Bekr&auml;fta remiss f&ouml;r Anna Andersson</label>
+							</li>
+							<li>
+								<div><input type="checkbox" name="todo" value="" class="todo" id="todo1" /></div>
+								<label for="todo1">Boka rum till avdelningsm&ouml;tet</label>
+							</li>
+							<li>
+								<div><input type="checkbox" name="todo" value="" class="todo" id="todo2" /></div>
+								<label for="todo2">Skriv epikris</label>
+							</li>
+							<li>
+								<div><input type="checkbox" name="todo" value="" class="todo" id="todo3" /></div>
+								<label for="todo3">Godk&auml;nn diktat fr&aring;n Sophie H&aring;kansson</label>
+							</li>
+						</ul>
+						<input type="submit" value="Markera som gjorda" />
+					</form>
+				</li>
+				<li>
+					<h2><a href="inactive"><span></span>Diktat <em class="status">3 nya</em></a></h2>
+					<ul>
+						<li><a href="inactive">Lorem</a></li>
+						<li><a href="inactive">Ipsum</a></li>
+						<li><a href="inactive">Dolor</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="inactive"><span></span>Bevakningar <em class="status">4 uppdaterade</em></a></h2>
+					<ul>
+						<li><a href="inactive">Lorem</a></li>
+						<li><a href="inactive">Ipsum</a></li>
+						<li><a href="inactive">Dolor</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="inactive"><span></span>Labbsvar <em class="status">2 ol&auml;sta</em></a></h2>
+					<ul>
+						<li><a href="inactive">Lorem</a></li>
+						<li><a href="inactive">Ipsum</a></li>
+						<li><a href="inactive">Dolor</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="inactive"><span></span>Snabbmeddelanden <em class="status">32 ol&auml;sta</em></a></h2>
+					<ul class="ims">
+						<li>
+							<a href="inactive"><strong>Nanso:</strong> Jag kan inte hitta den..</a>
+						</li>
+						<li>
+							<a href="inactive"><strong>Nanso:</strong> Har du sett PM-p&auml;rmen som...</a>
+						</li>
+						<li>
+							<a href="inactive"><strong>Nanso:</strong> &Auml;r du d&auml;r..?</a>
+						</li>
+						<li>
+							<a href="inactive"><strong>Nanso:</strong> Hall&aring;?</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<h2><a href="inactive"><span></span>Diskussionsgrupper</a></h2>
+					<ul class="discussions">
+						<li class="unread"><a href="inactive">Lorem</a></li>
+						<li class="unread"><a href="inactive">Ipsum</a></li>
+						<li class="unread"><a href="inactive">Dolor</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section class="portlet tab tab-2 search">
+		<div class="portlet-content">
+			<form class="search" action="http://hitta.vgregion.se/" method="get">
+				<label for="q">S&ouml;k p&aring; hitta.vgregion.se:</label>
+				<input type="search" id="q" name="q" />
+				<input type="submit" value="S&ouml;k" />
+			</form>
+		</div>
+	</section>
+	<section class="portlet tab tab-3 user">
+		<div class="portlet-content">
+			<h1><span>Inloggad som:</span> Leo Andersson</h1>
+			<ul class="utilities">
+				<li><a href="/profil_leo/installningar/index.html">Egna inst&auml;llningar</a></li>
+				<li><a href="/profil_leo/">Byt till standard</a></li>
+				<li><a href="">Logga ut</a></li>
+			</ul>
+		</div>
+	</section>
+</div>
