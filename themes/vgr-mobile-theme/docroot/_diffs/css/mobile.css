@@ -95,38 +95,67 @@ body {
 -------------------------------------------------------------- */
 
 .portlet.navigation {
+	position: relative;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-	width:100%;
 	padding-left:68px;
+	padding-right:12px;
 	line-height:49px;
+	text-align: right;
 }
 .portlet.navigation h1 {
-	margin:0 30px 0 0;
-	color:#fff;
+	float:left;
 	overflow:hidden;
+	margin:0;
+	color:#fff;
+	font-size: 1.6em;
 	text-overflow:ellipsis;
 }
 .portlet.navigation .switch-dashboard {
-	position:absolute;
-	top:0;
-	right:0;
-	padding:24px 20px;
-	border:none;
-	width:18px;
-	height:18px;
-	background:url(../images/icons/arrow.png) no-repeat 50% 50%;
-	opacity:0.5;
+	display: inline-block;
 	overflow:hidden;
-	text-indent:-9999px;
+	padding:6px 6px 6px 8px;
+	border:2px solid #ccc;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 4px 2px rgba(0,0,0,0.2);
+	color: #fff;
+	background: #00579c;
+	background: -moz-linear-gradient(top, #00579c 0%, #0075D6 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00579c), color-stop(100%,#0075D6));
+	background: -webkit-linear-gradient(top, #00579c 0%,#0075D6 100%);
+	background: -o-linear-gradient(top, #00579c 0%,#0075D6 100%);
+	background: linear-gradient(top, #00579c 0%,#0075D6 100%);
+	-webkit-background-clip:padding-box;
+	font:bold 13px/normal "Helvetica Neue",Helvetica,sans-serif;
+	cursor: pointer;
 	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
-.portlet.navigation .switch-dashboard.active {opacity:1;}
+.portlet.navigation .switch-dashboard span {
+	display: inline-block;
+	padding-right: 22px;
+	background:url(../images/icons/arrow-white.png) no-repeat 100% 50%;
+}
+.portlet.navigation .switch-dashboard.active {
+	border-color: #fff;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background: #0075D6;
+	background: -moz-linear-gradient(top, #0075D6 0%, #00579c 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0075D6), color-stop(100%,#00579c));
+	background: -webkit-linear-gradient(top, #0075D6 0%,#00579c 100%);
+	background: -o-linear-gradient(top, #0075D6 0%,#00579c 100%);
+	background: linear-gradient(top, #0075D6 0%,#00579c 100%);
+}
 .portlet.navigation .navigate-page {
 	position:absolute;
 	top:40px;
-	right:4px;
+	right:12px;
 	margin:0;
 	padding:0;
 	list-style:none;
@@ -136,12 +165,14 @@ body {
 	-o-border-radius:5px;
 	-ms-border-radius:5px;
 	border-radius:5px;
+	-moz-box-shadow:0 4px 10px rgba(0,0,0,0.3);
 	-webkit-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+	box-shadow:0 4px 10px rgba(0,0,0,0.3);
+	text-align: left;
 }
-.portlet.navigation .navigate-page li + li {
-	border-top:1px solid #e0e0e0;
-}
-.portlet.navigation .navigate-page a {
+.portlet.navigation .navigate-page li + li {border-top:1px solid #e0e0e0;}
+.portlet.navigation .navigate-page a,
+.portlet.navigation .navigate-page strong {
 	display:block;
 	padding:12px 12px;
 	color:#000;
@@ -152,8 +183,16 @@ body {
 	-webkit-tap-highlight-color:rgba(20,99,162,0.2);
 	-webkit-touch-callout:none;
 }
+.portlet.navigation .navigate-page a {
+	text-decoration:none;
+	-webkit-tap-highlight-color:rgba(20,99,162,0.2);
+	-webkit-touch-callout:none;
+}
 .portlet.navigation .navigate-page a:hover,
-.portlet.navigation .navigate-page a:focus {background-color:rgba(20,99,162,0.2);}
+.portlet.navigation .navigate-page a:focus,
+.navigate-page .sel strong {background-color:rgba(20,99,162,0.2);}
+.portlet.navigation .navigate-page .sel,
+.portlet.navigation .navigate-page .sel + li {border-color: #aaa;}
 
 /* CONTENT
 =========================================================================================================================== */
@@ -209,23 +248,23 @@ body {
 	background-position:50% 50%;
 	-webkit-background-clip:padding-box;
 }
-.app-news a.app-link:before {background-image:url(../images/icons/news.png);}
-.app-work a.app-link:before {background-image:url(../images/icons/work.png);}
-.app-mail a.app-link:before {background-image:url(../images/icons/email.png);}
-.app-todos a.app-link:before {background-image:url(../images/icons/todos.png);}
-.app-documents a.app-link:before {background-image:url(../images/icons/documents.png);}
-.app-contacts a.app-link:before {background-image:url(../images/icons/contacts.png);}
-.app-calendar a.app-link:before {background-image:url(../images/icons/calendar.png);}
-.app-movies a.app-link:before {background-image:url(../images/icons/movies.png);}
-.app-watch a.app-link:before {background-image:url(../images/icons/radar.png);}
-.app-topics a.app-link:before {background-image:url(../images/icons/email.png);}
-.app-searches a.app-link:before {background-image:url(../images/icons/search.png);}
-.app-updated-documents a.app-link:before {background-image:url(../images/icons/email.png);}
-.app-healthcare-info a.app-link:before {background-image:url(../images/icons/email.png);}
-.app-healthcare-news a.app-link:before {background-image:url(../images/icons/email.png);}
-.app-search-eira a.app-link:before {background-image:url(../images/icons/search.png);}
-.app-waiting-times a.app-link:before {background-image:url(../images/icons/clock.png);}
-.app-intranet a.app-link:before {background-image:url(../images/icons/rolodex.png);}
+.app-news a:before {background-image:url(../images/icons/news.png);}
+.app-work a:before {background-image:url(../images/icons/work.png);}
+.app-mail a:before {background-image:url(../images/icons/email.png);}
+.app-todos a:before {background-image:url(../images/icons/todos.png);}
+.app-documents a:before {background-image:url(../images/icons/documents.png);}
+.app-contacts a:before {background-image:url(../images/icons/contacts.png);}
+.app-calendar a:before {background-image:url(../images/icons/calendar.png);}
+.app-movies a:before {background-image:url(../images/icons/movies.png);}
+.app-watch a:before {background-image:url(../images/icons/radar.png);}
+.app-topics a:before {background-image:url(../images/icons/email.png);}
+.app-searches a:before {background-image:url(../images/icons/search.png);}
+.app-updated-documents a:before {background-image:url(../images/icons/email.png);}
+.app-healthcare-info a:before {background-image:url(../images/icons/email.png);}
+.app-healthcare-news a:before {background-image:url(../images/icons/email.png);}
+.app-search-eira a:before {background-image:url(../images/icons/search.png);}
+.app-waiting-times a:before {background-image:url(../images/icons/clock.png);}
+.app-intranet a:before {background-image:url(../images/icons/rolodex.png);}
 .app-icon .portlet-body a {
 	display:inline-block;
 	position:relative;
@@ -598,6 +637,13 @@ body {
 	.portlet .utilities form.add input[type="url"]:focus,
 	.portlet .utilities form.add input[type="text"]:focus {width:93%;}
 	.portlet .utilities form.add input:focus + input[type="submit"] {display:none;}
+	.portlet.navigation {padding-right:6px;}
+	.portlet.navigation .switch-dashboard span {
+		width: 18px;
+		padding-right: 0;
+		text-indent: -9999px;
+	}
+	.portlet.navigation .navigate-page {right:8px;}
 }
 @media only screen and (min-width:320px) {
 	.dashboard {width:320px;}
@@ -630,24 +676,24 @@ body {
 		-webkit-border-radius:8px;
 		border-radius:8px;
 	}
-	.app-news a.app-link:before {background-image:url(../images/icons/news-2x.png);}
-	.app-work a.app-link:before {background-image:url(../images/icons/work-2x.png);}
-	.app-mail a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-todos a.app-link:before {background-image:url(../images/icons/todos-2x.png);}
-	.app-documents a.app-link:before {background-image:url(../images/icons/documents-2x.png);}
-	.app-contacts a.app-link:before {background-image:url(../images/icons/contacts-2x.png);}
-	.app-calendar a.app-link:before {background-image:url(../images/icons/calendar-2x.png);}
-	.app-movies a.app-link:before {background-image:url(../images/icons/movies-2x.png);}
-	.app-watch a.app-link:before {background-image:url(../images/icons/radar-2x.png);}
-	.app-topics a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-searches a.app-link:before {background-image:url(../images/icons/search-2x.png);}
-	.app-updated-documents a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-healthcare-info a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-healthcare-news a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-search-eira a.app-link:before {background-image:url(../images/icons/search-2x.png);}
-	.app-waiting-times a.app-link:before {background-image:url(../images/icons/clock-2x.png);}
-	.app-intranet a.app-link:before {background-image:url(../images/icons/rolodex-2x.png);}
-	.app-icon .portlet-body a.app-link {width:140px;}
+	.app-news a:before {background-image:url(../images/icons/news-2x.png);}
+	.app-work a:before {background-image:url(../images/icons/work-2x.png);}
+	.app-mail a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-todos a:before {background-image:url(../images/icons/todos-2x.png);}
+	.app-documents a:before {background-image:url(../images/icons/documents-2x.png);}
+	.app-contacts a:before {background-image:url(../images/icons/contacts-2x.png);}
+	.app-calendar a:before {background-image:url(../images/icons/calendar-2x.png);}
+	.app-movies a:before {background-image:url(../images/icons/movies-2x.png);}
+	.app-watch a:before {background-image:url(../images/icons/radar-2x.png);}
+	.app-topics a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-searches a:before {background-image:url(../images/icons/search-2x.png);}
+	.app-updated-documents a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-healthcare-info a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-healthcare-news a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-search-eira a:before {background-image:url(../images/icons/search-2x.png);}
+	.app-waiting-times a:before {background-image:url(../images/icons/clock-2x.png);}
+	.app-intranet a:before {background-image:url(../images/icons/rolodex-2x.png);}
+	.app-icon .portlet-body a {width:140px;}
 	.app-icon .count {right:23px;}
 }
 @media only screen and (min-width:1024px) {
@@ -663,23 +709,23 @@ body {
 @media only screen and (-webkit-min-device-pixel-ratio:2) {
 	/* Higher resolution icons */
 	.app-icon a.app-link:before {background-size:32px 32px;}
-	.app-news a.app-link:before {background-image:url(../images/icons/news-2x.png);}
-	.app-work a.app-link:before {background-image:url(../images/icons/work-2x.png);}
-	.app-mail a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-todos a.app-link:before {background-image:url(../images/icons/todos-2x.png);}
-	.app-documents a.app-link:before {background-image:url(../images/icons/documents-2x.png);}
-	.app-contacts a.app-link:before {background-image:url(../images/icons/contacts-2x.png);}
-	.app-calendar a.app-link:before {background-image:url(../images/icons/calendar-2x.png);}
-	.app-movies a.app-link:before {background-image:url(../images/icons/movies-2x.png);}
-	.app-watch a.app-link:before {background-image:url(../images/icons/radar-2x.png);}
-	.app-topics a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-searches a.app-link:before {background-image:url(../images/icons/search-2x.png);}
-	.app-updated-documents a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-healthcare-info a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-healthcare-news a.app-link:before {background-image:url(../images/icons/email-2x.png);}
-	.app-search-eira a.app-link:before {background-image:url(../images/icons/search-2x.png);}
-	.app-waiting-times a.app-link:before {background-image:url(../images/icons/clock-2x.png);}
-	.app-intranet a.app-link:before {background-image:url(../images/icons/rolodex-2x.png);}
+	.app-news a:before {background-image:url(../images/icons/news-2x.png);}
+	.app-work a:before {background-image:url(../images/icons/work-2x.png);}
+	.app-mail a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-todos a:before {background-image:url(../images/icons/todos-2x.png);}
+	.app-documents a:before {background-image:url(../images/icons/documents-2x.png);}
+	.app-contacts a:before {background-image:url(../images/icons/contacts-2x.png);}
+	.app-calendar a:before {background-image:url(../images/icons/calendar-2x.png);}
+	.app-movies a:before {background-image:url(../images/icons/movies-2x.png);}
+	.app-watch a:before {background-image:url(../images/icons/radar-2x.png);}
+	.app-topics a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-searches a:before {background-image:url(../images/icons/search-2x.png);}
+	.app-updated-documents a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-healthcare-info a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-healthcare-news a:before {background-image:url(../images/icons/email-2x.png);}
+	.app-search-eira a:before {background-image:url(../images/icons/search-2x.png);}
+	.app-waiting-times a:before {background-image:url(../images/icons/clock-2x.png);}
+	.app-intranet a:before {background-image:url(../images/icons/rolodex-2x.png);}
 	/* Tab buttons */
 	.tab-nav button {background-size:48px 48px;}
 	.tab-nav button.start {background-image:url(../images/icons/start_negative-2x.png);}
@@ -689,7 +735,7 @@ body {
 	/* Navigation */
 	.portlet.navigation .switch-dashboard {
 		background-size:18px 18px;
-		background-image:url(../images/icons/arrow-2x.png);
+		background-image:url(../images/icons/arrow-white-2x.png);
 	}
 	/* Utilities */
 	.portlet.user h1 {

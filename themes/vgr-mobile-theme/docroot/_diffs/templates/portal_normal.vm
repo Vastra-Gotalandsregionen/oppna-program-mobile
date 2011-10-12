@@ -11,9 +11,9 @@
 	$theme.include($top_head_include)
 </head>
 
-<body class="$css_class">
+<body class="$css_class $css_dockbar_class">
 
-#if($is_signed_in)
+#if($render_dockbar)
 	#dockbar()
 #end
 
@@ -53,5 +53,7 @@ $theme.include($bottom_include)
 #js ("$javascript_folder/jquery.js")
 #js ("$javascript_folder/iscroll.js")
 #js ("$javascript_folder/mobile_jquery.js")
+#js ("$javascript_folder/vgr-mobile-icon.js")
+#js ("$javascript_folder/vgr-mobile-instance.js")
 
 </html>

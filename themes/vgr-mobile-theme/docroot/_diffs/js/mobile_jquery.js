@@ -7,7 +7,7 @@ $(function() {
 	// Add class to body element to indicate that JavaScript is available
 	$('body').addClass('js');
 
-	$('.navigate-page').hide().before($('<button class="switch-dashboard">Byt startsida</button>').bind((!!('ontouchend' in window)?'touchend':'click'),function() {
+	$('.navigate-page').hide().before($('<button class="switch-dashboard"><span>Byt sida</span></button>').bind((!!('ontouchend' in window)?'touchend':'click'),function() {
 		$(this).toggleClass('active').siblings('.navigate-page').toggle();
 	}));
 
@@ -143,7 +143,7 @@ $(function() {
 					title = prompt("Ange en titel",data.replace(/^\s+/g,''));
 				})
 				.error(function() {
-					alert("Kunde inte nå denna URL");
+					alert("Kunde inte nÃ¥ denna URL");
 				})
 				.complete(function() {
 					newItem.find('a').attr('href',url).html(title);
