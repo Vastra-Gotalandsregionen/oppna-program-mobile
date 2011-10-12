@@ -6,8 +6,8 @@
 	top: 30px;
 }
 
-.signed-in #content {
-	padding-top: 79px;
+.dockbar-true #content {
+	padding-top: 49px;
 }
 
 /*
