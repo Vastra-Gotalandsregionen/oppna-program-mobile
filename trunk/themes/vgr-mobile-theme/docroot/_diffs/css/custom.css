@@ -2,7 +2,7 @@
 @import url(mobile.css);
 
 /*- Push header down to cater for dockbar when signed in -*/
-.signed-in #header {
+.dockbar-true #header {
 	top: 30px;
 }
 
@@ -34,6 +34,11 @@
 .portlet-static.app-icon {
 	width: 100%;
 }
+
+.portlet.navigation button.switch-dashboard {
+	text-shadow: 0px 0px #FFF;
+}
+
 
 /* LOGIN
 ================================================================================ */
@@ -91,4 +96,19 @@
 .portlet-login .aui-field-choice,
 .portlet-login .portlet-title .icon	 {
 	display: none;
+}
+
+/* APP ICON OVERLAY
+================================================================================ */
+
+.mobile-icon-dialog {}
+
+.mobile-icon-dialog .aui-dialog-hd h1 {
+	font-size: 12px;
+	margin: 0;	
+}
+
+.mobile-icon-iframe-wrap {
+	height: 300px;
+	width: 500px;	
 }
