@@ -19,7 +19,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 		
 	;
 	
-	var TPL_MOBILE_ICON_IFRAME = '<div style="height: {iframeWrapHeight}px; width: {iframeWrapWidth}px;"><iframe class="mobile-icon-iframe" title="" frameborder="0" src="{url}" width="100%" height="100%"></iframe></div>'
+		var TPL_MOBILE_ICON_IFRAME = '<div style="height: {iframeWrapHeight}; width: {iframeWrapWidth};"><iframe class="mobile-icon-iframe" title="" frameborder="0" src="{url}" width="100%" height="100%"></iframe></div>'
 	
 	;
 		
@@ -63,13 +63,12 @@ AUI().add('vgr-mobile-icon',function(A) {
 						var iframeURL = params[1];
 
 						var contentIframe = A.substitute(TPL_MOBILE_ICON_IFRAME, {
-							iframeWrapHeight: 300,
-							iframeWrapWidth: 500,
+							iframeWrapHeight: '90%',
+							iframeWrapWidth: '90%',
 							url: iframeURL
 						});
 						
 						var bodyContent = contentIframe;
-						bodyContent = '<div>Over iframe</div>' + contentIframe +  '<div>Under iframe</div>';
 
 						dialog.set('bodyContent', bodyContent);
 					},
@@ -79,10 +78,19 @@ AUI().add('vgr-mobile-icon',function(A) {
 						
 						var linkNode = e.target;
 						
-						var winHeight = linkNode.get('winHeight');
-						var winWidth = linkNode.get('winWidth');
+						var bodyNode = A.one('body');
 						
-						//if(winHeight < 660 || winWidth < 1070) { return; }
+						var heightFooter = 44;
+						var heightHeader = 49;
+						
+						var winHeight = bodyNode.get('winHeight');
+						var winWidth = bodyNode.get('winWidth');
+						
+						var dialogExtrasHeight = 50;
+						var dialogExtrasWidth = 50;
+						
+						var dialogHeight = winHeight - heightFooter - heightHeader - dialogExtrasHeight;
+						var dialogWidth = winWidth - dialogExtrasWidth;
 						
 						e.halt();
 						
@@ -96,14 +104,15 @@ AUI().add('vgr-mobile-icon',function(A) {
 							destroyOnClose: true,
 							draggable: true,
 							group: 'default',
-							height: 400,
+							height: dialogHeight,
 							modal: true,
 							stack: true,
 							title: 'Mobile Icon',
-							width: 600
+							width: dialogWidth
 						};
 						
-						var currentTitle = linkNode.html();
+						var currentTitle = linkNode.one('h1 .app-title').html();
+						currentTitle = currentTitle + '(h: ' + winHeight + ', w: ' + winWidth + ')';
 						
 						var dialog = new A.Dialog(
 							A.merge(dialogOptions, {
