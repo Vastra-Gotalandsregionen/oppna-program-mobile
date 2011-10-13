@@ -1,6 +1,14 @@
 @import url(css.css);
 @import url(mobile.css);
 
+/* Clearfix style clearing */
+.clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0}
+.clearfix{display:inline-block}
+* html .clearfix{height:1%}
+.clearfix{display:block}
+
+
+
 /*- Push header down to cater for dockbar when signed in -*/
 .dockbar-true #header {
 	top: 30px;
@@ -101,18 +109,71 @@
 /* APP ICON OVERLAY
 ================================================================================ */
 
-.mobile-icon-dialog {}
+.mobile-icon-overlay {}
 
-.mobile-icon-dialog .aui-dialog-hd h1 {
-	font-size: 12px;
-	margin: 0;	
+.mobile-icon-overlay {}
+
+.mobile-icon-overlay-content {
+}
+
+.mobile-icon-overlay-content .aui-widget-bd,
+.mobile-icon-overlay-content .aui-widget-hd {
+	padding: 10px;
+}
+
+.mobile-icon-overlay-content .aui-widget-hd {
+	background: #1D2527;
+	color: #fff;
+}
+
+.mobile-icon-overlay-content .aui-widget-bd {
+	background: #fff;
+	overflow-y: scroll;
+}
+
+.mobile-icon-overlay-hd-wrap {}
+
+.mobile-icon-overlay-hd-title {
+	float: left;
+	display: block;
+	
+	position: relative;
+	
+	font-size: 14px;
+	
+	font-weight: bold;	
+}
+
+.mobile-icon-overlay-hd-close {
+	border: 2px solid #ccc;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 4px 2px rgba(0,0,0,0.2);
+	color: #fff;	
+	display: block;
+	float: right;
+	font-weight: bold;
+	padding: 6px 6px 6px 8px;
+	position: relative;
+}
+
+.mobile-icon-overlay-hd-close:hover {
+	cursor: pointer;	
 }
 
 .mobile-icon-iframe-wrap {
-	height: 300px;
-	width: 500px;	
+	height: 10000px;
+	width: 100%;
 }
 
+/* Fix for tabs with overlay */
+
+.tabs .tab {
+	z-index: 20;
+}
 
 /* SANDBOX
 ================================================================================ */
