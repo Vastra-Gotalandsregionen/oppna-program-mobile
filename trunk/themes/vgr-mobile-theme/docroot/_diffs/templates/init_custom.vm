@@ -66,7 +66,7 @@
 ## ---------- Dockbar ---------- ##
 
 #set($render_dockbar = false)
-#set($render_dockbar_for_omni_admin = true)
+#set($render_dockbar_for_omni_admin = false)
 
 #if($permissionChecker.isOmniadmin() && $render_dockbar_for_omni_admin)
 	#set($render_dockbar = true)	
