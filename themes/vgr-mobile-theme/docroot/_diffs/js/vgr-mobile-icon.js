@@ -19,7 +19,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 		
 	;
 	
-		var TPL_MOBILE_ICON_IFRAME = '<div style="height: {iframeWrapHeight}; width: {iframeWrapWidth};"><iframe class="mobile-icon-iframe" title="" frameborder="0" src="{url}" width="100%" height="100%"></iframe></div>'
+		var TPL_MOBILE_ICON_IFRAME = '<div class="mobile-icon-iframe-wrap" style="width: {iframeWrapWidth}; overflow: hidden_;"><iframe class="mobile-icon-iframe" title="" frameborder="0" src="{url}" width="100%" height="100%"></iframe></div>'
 	
 	;
 		
@@ -55,15 +55,69 @@ AUI().add('vgr-mobile-icon',function(A) {
 						links.on('click', instance._onMobileIconLinkClick, instance);
 					},
 					
+					// Convert a css px value to int.
+					_convertCssPxToInt: function(cssPxValueText) {
+					
+						// Set valid characters for numeric number.
+						var validChars = "0123456789.";
+					
+						// If conversion fails return 0.
+						var convertedValue = 0;
+					
+						// Loop all characters of
+						for (i = 0; i < cssPxValueText.length; i++) {
+					
+							// Stop search for valid numeric characters,  when a none numeric number is found.
+							if (validChars.indexOf(cssPxValueText.charAt(i)) == -1) {
+					
+								// Start conversion if at least one character is valid.
+								if (i > 0) {
+									// Convert validnumbers to int and return result.
+									convertedValue = parseInt(cssPxValueText.substring(0, i));
+									return convertedValue;
+								}
+							}
+						}
+					
+						return convertedValue;
+					},					
+					
+					_onAfterMobileIconDialogRender: function(e, params) {
+
+						var instance = this;
+						
+						var dialog = params[0];
+						
+						var contentBox = dialog.get('contentBox');
+						var dialogBd = contentBox.one('.aui-dialog-bd');
+						var dialogHd = contentBox.one('.aui-dialog-hd');
+						var dialogBdHeight = instance._convertCssPxToInt(dialogBd.getComputedStyle('height'));
+						var dialogHdHeight = instance._convertCssPxToInt(dialogHd.getComputedStyle('height'));
+						
+						var heightAdjustment = 20;
+						
+						var dialogBdHeightNew = dialogBdHeight - dialogHdHeight - heightAdjustment;
+						dialogBd.setStyle('height', dialogBdHeightNew + 'px');
+						
+						
+						var iframeHeight = dialogBdHeight - dialogHdHeight - heightAdjustment;
+						
+						var iframe = contentBox.one('iframe.mobile-icon-iframe');
+						
+						//iframe.setAttribute('height', iframeHeight);
+					},
+					
 					_onBeforeMobileIconDialogRender: function(e, params) {
 						var instance = this;
 						
 						var dialog = params[0];
 
 						var iframeURL = params[1];
-
+						
+						var contentBox = dialog.get('contentBox');
+						
 						var contentIframe = A.substitute(TPL_MOBILE_ICON_IFRAME, {
-							iframeWrapHeight: '90%',
+							iframeWrapHeight: '100%',
 							iframeWrapWidth: '90%',
 							url: iframeURL
 						});
@@ -112,7 +166,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 						};
 						
 						var currentTitle = linkNode.one('h1 .app-title').html();
-						currentTitle = currentTitle + '(h: ' + winHeight + ', w: ' + winWidth + ')';
+						currentTitle = currentTitle + ' c';
 						
 						var dialog = new A.Dialog(
 							A.merge(dialogOptions, {
@@ -122,6 +176,9 @@ AUI().add('vgr-mobile-icon',function(A) {
 
 						// On before render listener
 						dialog.before('render', instance._onBeforeMobileIconDialogRender, instance, [dialog, url]);
+						
+						// On after render listener
+						dialog.after('render', instance._onAfterMobileIconDialogRender, instance, [dialog]);
 						
 						dialog.render();
 					}
