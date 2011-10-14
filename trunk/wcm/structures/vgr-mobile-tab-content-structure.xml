@@ -1,0 +1,31 @@
+<root>
+	<dynamic-element name='contentItems' type='text' index-type='' repeatable='true'>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[true]]></entry>
+			<entry name="instructions"><![CDATA[Skriv in titel f&ouml;r sektionen.]]></entry>
+			<entry name="label"><![CDATA[Sektionstitel]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
+
+  		<dynamic-element name='expanded' type='boolean' index-type='' repeatable='false'>
+  			<meta-data>
+				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+				<entry name="required"><![CDATA[false]]></entry>
+				<entry name="instructions"><![CDATA[Kryssa i checkboxen om sektionen skall vara expanderad fr&aring;n start.]]></entry>
+				<entry name="label"><![CDATA[Expandera fr&aring;n start]]></entry>
+				<entry name="predefinedValue"><![CDATA[]]></entry>
+			</meta-data>
+		</dynamic-element>
+		
+  		<dynamic-element name='iframeURL' type='text' index-type='' repeatable='false'>
+  			<meta-data>
+				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+				<entry name="required"><![CDATA[false]]></entry>
+				<entry name="instructions"><![CDATA[Skriv in url till portleten med data f&ouml;r sektionen.]]></entry>
+				<entry name="label"><![CDATA[URL data]]></entry>
+				<entry name="predefinedValue"><![CDATA[]]></entry>
+			</meta-data>
+		</dynamic-element>
+	</dynamic-element>
+</root>
