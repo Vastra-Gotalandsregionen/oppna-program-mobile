@@ -2,8 +2,8 @@
     <div class="tabs">
     	<section class="portlet tab tab-1 workwatch">
     		<div class="portlet-content">
-				
-				$mobile_article_1_content
+
+				##$mobile_article_1_content
 				
 				<!--
     			<ul class="utilities">
@@ -122,7 +122,7 @@
     	<section class="portlet tab tab-2 search">
     		<div class="portlet-content">
 				
-				$mobile_article_2_content
+				##$mobile_article_2_content
 				
 				<!--
     			<form class="search" action="http://hitta.vgregion.se/" method="get">
@@ -136,7 +136,7 @@
     	<section class="portlet tab tab-3 user">
     		<div class="portlet-content">
 				
-				$mobile_article_3_content
+				##$mobile_article_3_content
 				
 				<!--
     			<h1><span>Inloggad som:</span> Leo Andersson</h1>

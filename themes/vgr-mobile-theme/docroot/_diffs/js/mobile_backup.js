@@ -1,37 +1,37 @@
 // Global iScroll instance
 var myScroll;
 
-// Initialise AUI
-AUI().use('event', 'node', 'attribute', function(A) {
+// Initialise YUI
+YUI().use('event', 'node', 'attribute', function(Y) {
 
 	// Do things when the DOM is ready
-	A.on("domready", function () {
+	Y.on("domready", function () {
 
 		// Add class to body element to indicate that JavaScript is available
-		A.one('body').addClass('js');
+		Y.one('body').addClass('js');
 
 		// Remove submit button from navigation form
-		A.all('form.navigate-page input[type="submit"]').addClass('structural');
+		Y.all('form.navigate-page input[type="submit"]').addClass('structural');
 
 		// Make navigation form submit on select change
-		A.one('form.navigate-page select').on('change', function(e) {
+		Y.one('form.navigate-page select').on('change', function(e) {
 			e.target.get('form').submit();
 		});
 
 		// Show tab navigation
-		A.all('.tab-nav').removeClass('hidden');
+		Y.all('.tab-nav').removeClass('hidden');
 
 		// Hide tab content
-		A.all('.tabs > .tab').addClass('hidden');
+		Y.all('.tabs > .tab').addClass('hidden');
 
 		// Assign event handlers to tab buttons
 
-		A.all('.tab-nav button').on('click', function(e) {
+		Y.all('.tab-nav button').on('click', function(e) {
 			var button = e.target,
 				li = button.get('parentNode'),
 				ul = li.get('parentNode'),
 				liClass = li.get('className').match(/tab-\d+/)[0],
-				tab = A.one('.tabs > .tab.' + liClass),
+				tab = Y.one('.tabs > .tab.' + liClass),
 				// Available height between the header and the footer
 				availableHeight = availableHeight = window.innerHeight - document.getElementById('header').offsetHeight - document.getElementById('footer').offsetHeight;
 			tab.removeClass('hidden');
@@ -43,19 +43,19 @@ AUI().use('event', 'node', 'attribute', function(A) {
 			// A tab is currently displayed
 			if (ul.hasClass('active')) {
 				// Hide the tabs
-				A.all('.tabs > .tab').addClass('hidden');
+				Y.all('.tabs > .tab').addClass('hidden');
 				// Make all buttons unselected
 				// This button's tab was displayed - no tabs displayed
 				if (li.hasClass('sel')) {
 					ul.all('li').removeClass('sel');
 					ul.removeClass('active');
 					// Hide the dashboard
-					A.one('.dashboard').removeClass('hidden');
+					Y.one('.dashboard').removeClass('hidden');
 				} else {
 				// Some other tab was displayed - display this button's tab
 					ul.all('li').removeClass('sel');
 					li.addClass('sel');
-					A.one('.tabs > .tab.' + liClass).removeClass('hidden');
+					Y.one('.tabs > .tab.' + liClass).removeClass('hidden');
 				}
 			} else {
 			// No tab displayed, so display this button's tab
@@ -63,7 +63,7 @@ AUI().use('event', 'node', 'attribute', function(A) {
 				li.addClass('sel');
 				tab.removeClass('hidden');
 				// Hide the dashboard
-				A.one('.dashboard').addClass('hidden');
+				Y.one('.dashboard').addClass('hidden');
 			}
 			// Refresh iScroll after changing content
 			setTimeout(function () {
@@ -77,24 +77,24 @@ AUI().use('event', 'node', 'attribute', function(A) {
 	});
 
 	// Do things when the window is loaded
-	A.on("load", function () {
+	Y.on("load", function () {
 
 		// Initialise iScroll only in some devices
 		if (navigator.userAgent.toLowerCase().match(/(iphone|ipod|ipad|android)/)) {
 			// Add a class to enable different styling when iScroll is running
-			A.one('body').addClass('iscroll');
+			Y.one('body').addClass('iscroll');
 			setTimeout(function () {
 				myScroll = new iScroll('content', {
 					hScrollbar: false,
 					vScrollbar: false
 				});
 				// Workaround for problem with iScroll and select elements
-				A.all('#content select').on('touchstart', function(e) {
+				Y.all('#content select').on('touchstart', function(e) {
 					e.stopPropagation();
 				});
 			}, 100);
 		}
 
-	}, A.config.win);
+	}, Y.config.win);
 
 });

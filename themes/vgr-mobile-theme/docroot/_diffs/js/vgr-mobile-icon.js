@@ -84,7 +84,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 					
 					_bindMobileIconLinks: function() {
 						var instance = this;
-						
+							
 						var links = A.all('.app-icon a.app-link');
 						
 						links.on('click', instance._onMobileIconLinkClick, instance);
