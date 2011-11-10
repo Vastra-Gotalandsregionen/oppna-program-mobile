@@ -9,6 +9,8 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
 	$theme.include($top_head_include)
+	
+	#parse ("$full_templates_path/hide_node_info.vm")
 </head>
 
 <body class="$css_class $css_dockbar_class">

@@ -74,3 +74,8 @@
 
 
 #set($css_dockbar_class = "dockbar-" + $render_dockbar)
+
+## ---------- Node info ---------- ##
+
+#set($hide_node_info = true)
+

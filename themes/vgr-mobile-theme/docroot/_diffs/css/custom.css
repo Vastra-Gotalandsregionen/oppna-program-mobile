@@ -18,29 +18,19 @@
 	padding-top: 49px;
 }
 
-/*
-.portlet-static {
-	background: #fff;
-}
-*/
-
 .portlet,
 .portlet .app-icon,
 .portlet.navigation {
 	background: transparent;
 }
 
-.portlet-static,
-.portlet-static.app-icon {
+.columns-max .app-icon {
 	background: #fff;
+	width: 100%;
 }
 
 .portlet-login {
 	background: transparent;
-}
-
-.portlet-static.app-icon {
-	width: 100%;
 }
 
 .portlet.navigation button.switch-dashboard {
@@ -173,6 +163,7 @@
 
 .mobile-icon-iframe-wrap {
 	height: 10000px;
+	height: 100%;
 	width: 100%;
 }
 
