@@ -23,11 +23,9 @@ AUI().add('vgr-mobile-icon',function(A) {
 		
 	;
 	
-	var	TPL_MOBILE_ICON_IFRAME = '<div class="mobile-icon-iframe-wrap"><iframe class="mobile-icon-iframe" title="" frameborder="0" src="{url}" width="100%" height="100%"></iframe></div>',
+	var	TPL_MOBILE_ICON_IFRAME = '<div class="mobile-icon-iframe-wrap"><iframe name="{name}" id="{id}" class="mobile-icon-iframe" title="" frameborder="0" src="{url}" width="100%" height="100%"></iframe></div>',
 	
 		TPL_MOBILE_OVERLAY_HD = '<div class="mobile-icon-overlay-hd-wrap clearfix"><span class="mobile-icon-overlay-hd-title">{title}</span><span class="mobile-icon-overlay-hd-close">{closeText}</span></div>'
-	
-	
 	
 	;
 	var	LIPSUM_SHORT = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis justo vel augue luctus dignissim. Sed feugiat, mi sed suscipit mattis, erat dolor iaculis massa, nec euismod sem elit nec ipsum.</p>',
@@ -74,6 +72,119 @@ AUI().add('vgr-mobile-icon',function(A) {
 						var closeNode = contentBox.one('.mobile-icon-overlay-hd-close');
 						
 						closeNode.on('click', instance._onMobileOverlayCloseClick, instance, [overlay]);
+						
+						var iframeWrap = contentBox.one('.mobile-icon-iframe-wrap');
+						
+						iframeWrap.plug(A.LoadingMask, {
+							background: '#000'
+						}).loadingmask;
+						
+						var loadingMask = iframeWrap.loadingmask;
+						
+						loadingMask.on('show', function(e) {
+							var instance = this;
+							
+							var loadingMask = e.currentTarget;
+							
+							console.log('loadingMask: ');
+							console.log(loadingMask);
+							
+							var overlay = params[0];
+							var contentBox = overlay.get('contentBox');
+							
+						}, instance, [overlay]);
+						
+						loadingMask.show();
+						
+						var iframe = contentBox.one('iframe.mobile-icon-iframe');
+						
+				        iframe.on('load', function (e) {
+							var instance = this;
+							var iframe = e.currentTarget;
+							var iframeWrap = iframe.ancestor('.mobile-icon-iframe-wrap');
+							
+							iframeName = iframe.getAttribute('name');
+							
+							var iframeRaw = window.frames[iframeName].document;
+							var iframeHead = iframeRaw.getElementsByTagName("head")[0];
+							var iframeBody = iframeRaw.getElementsByTagName("body")[0];
+							
+							var iframeBodyHeight = iframeBody.offsetHeight;
+							var iframeWrapHeight = iframeBodyHeight + 40;
+							var winHeight = A.one('body').get('winHeight');
+							
+							if(iframeWrapHeight < winHeight) {
+								iframeWrapHeight = winHeight;
+							}
+							
+							//iframeWrap.setStyle('height', iframeWrapHeight + 'px');
+							
+							var frame = A.Node.getDOMNode(iframe);
+							
+							// Access iframe elements inside a new sandbox
+							AUI({
+								win: frame.contentWindow,
+							    doc: frame.contentWindow.document
+							}).use('aui-base', function(Frame) {
+							    var head = Frame.one('head');
+								var body = Frame.one('body');
+								
+								head.append('<link type="text/css" rel="stylesheet" href="/vgr-mobile-theme/css/iframe-styles.css" />');
+								body.addClass('portal-iframe');
+								
+								//body.setStyle('backgroundColor', '#eee');
+							});							
+							
+							//console.log('iframeHead: ', iframeHead);
+							
+							iframeWrap.loadingmask.hide();
+
+				        }, instance);
+						
+				        iframe.on('change', function (e) {
+							var instance = this;
+							var iframe = e.currentTarget;
+							var iframeWrap = iframe.ancestor('.mobile-icon-iframe-wrap');
+							
+							console.log('iFrame was changed.');
+							
+							iframeName = iframe.getAttribute('name');
+							
+							var iframeRaw = window.frames[iframeName].document;
+							var iframeHead = iframeRaw.getElementsByTagName("head")[0];
+							var iframeBody = iframeRaw.getElementsByTagName("body")[0];
+							
+							var iframeBodyHeight = iframeBody.offsetHeight;
+							var iframeWrapHeight = iframeBodyHeight + 40;
+							var winHeight = A.one('body').get('winHeight');
+							
+							if(iframeWrapHeight < winHeight) {
+								iframeWrapHeight = winHeight;
+							}
+							
+							//iframeWrap.setStyle('height', iframeWrapHeight + 'px');
+							
+							var frame = A.Node.getDOMNode(iframe);
+							
+							// Access iframe elements inside a new sandbox
+							AUI({
+								win: frame.contentWindow,
+							    doc: frame.contentWindow.document
+							}).use('aui-base', function(Frame) {
+							    var head = Frame.one('head');
+								var body = Frame.one('body');
+								
+								head.append('<link type="text/css" rel="stylesheet" href="/vgr-mobile-theme/css/iframe-styles.css" />');
+								body.addClass('portal-iframe');
+								
+								//body.setStyle('backgroundColor', '#eee');
+							});							
+							
+							//console.log('iframeHead: ', iframeHead);
+							
+							iframeWrap.loadingmask.hide();
+
+				        }, instance);						
 					},
 					
 					_beforeMobileOverlayRender: function(e, params) {
@@ -88,6 +199,10 @@ AUI().add('vgr-mobile-icon',function(A) {
 						var links = A.all('.app-icon a.app-link');
 						
 						links.on('click', instance._onMobileIconLinkClick, instance);
+					},
+					
+					_hideNodeInfo: function () {
+						var instance= this;
 					},
 					
 					_onMobileIconLinkClick: function(e) {
@@ -122,8 +237,12 @@ AUI().add('vgr-mobile-icon',function(A) {
 							title: currentTitle + ' floff',
 							closeText: 'Close'
 						});
+						
+						var iframeId = A.guid();
 
 						var bodyContent = A.substitute(TPL_MOBILE_ICON_IFRAME, {
+							id: iframeId,
+							name: iframeId,
 							url: url
 						});
 						
@@ -136,7 +255,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 							cssClass: 'mobile-icon-overlay',
 							headerContent: headerContent,
 							width: '100%',
-							zIndex: 10
+							zIndex: 15
 						});
 						
 						// On before render listener
@@ -174,6 +293,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 		requires: [
 			'aui-base',
 			'aui-dialog',
+			'aui-loading-mask',
 			'aui-overlay',
 			'overlay'
       ]

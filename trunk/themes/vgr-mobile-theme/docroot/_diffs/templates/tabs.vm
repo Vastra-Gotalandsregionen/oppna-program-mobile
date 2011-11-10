@@ -136,7 +136,7 @@
     	<section class="portlet tab tab-3 user">
     		<div class="portlet-content">
 				
-				##$mobile_article_3_content
+				$mobile_article_3_content
 				
 				<!--
     			<h1><span>Inloggad som:</span> Leo Andersson</h1>
