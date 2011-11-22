@@ -63,13 +63,31 @@
 #end
 
 
+## ---------- Tab Names (in Footer) ---------- ##
+
+#set($tab_name_start = "Start")
+#set($tab_name_work = "Koll p&aring; jobbet")
+#set($tab_name_search = "S&ouml;k")
+#set($tab_name_user = $user.getScreenName())
+
+
 ## ---------- Dockbar ---------- ##
 
 #set($render_dockbar = false)
-#set($render_dockbar_for_omni_admin = false)
+##set($render_dockbar_for_omni_admin = false)
 
+#*
 #if($permissionChecker.isOmniadmin() && $render_dockbar_for_omni_admin)
 	#set($render_dockbar = true)	
+#end
+*#
+
+#if($is_signed_in)
+	#set ( $exp_mobile_render_dockbar = $user.getExpandoBridge().getAttribute("mobile_render_dockbar") )
+	
+	#if($exp_mobile_render_dockbar)
+		#set($render_dockbar = true)
+	#end
 #end	
 
 
