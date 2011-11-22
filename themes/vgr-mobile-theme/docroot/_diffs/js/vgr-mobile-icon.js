@@ -234,7 +234,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 						var currentTitle = linkNode.one('h1 .app-title').html();
 						
 						var headerContent = A.substitute(TPL_MOBILE_OVERLAY_HD, {
-							title: currentTitle + ' floff',
+							title: currentTitle,
 							closeText: 'Close'
 						});
 						

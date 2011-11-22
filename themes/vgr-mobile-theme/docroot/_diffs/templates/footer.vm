@@ -1,10 +1,10 @@
 #if($show_tabs)
     <div class="tab-nav hidden">
     	<ul>
-    		<li class="tab-0 sel"><button type="button" class="start"><span>Start</span></button></li>
-    		<li class="tab-1"><button type="button" class="work"><span>Koll p&aring; jobbet</span></button></li>
-    		<li class="tab-2"><button type="button" class="search"><span>S&ouml;k</span></button></li>
-    		<li class="tab-3"><button type="button" class="settings"><span>Leo A.</span></button></li>
+    		<li class="tab-0 sel"><button type="button" class="start"><span>$tab_name_start</span></button></li>
+    		<li class="tab-1"><button type="button" class="work"><span>$tab_name_work</span></button></li>
+    		<li class="tab-2"><button type="button" class="search"><span>$tab_name_search</span></button></li>
+    		<li class="tab-3"><button type="button" class="settings"><span>$tab_name_user</span></button></li>
     	</ul>
     </div>
 #end
