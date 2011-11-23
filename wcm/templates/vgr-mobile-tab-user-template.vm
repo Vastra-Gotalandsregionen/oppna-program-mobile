@@ -2,12 +2,14 @@
 ##set ($screenName1 = $getterUtil.getLong($request.theme-display.screen-name))
 ##set ($screenName2 = $getterUtil.getLong($request.theme-display.user-screen-name))
 
+#set ($userId = $getterUtil.getLong($request.theme-display.user-id))
+
 #set ($url-signout-temp = "/c/portal/logout")
 #set ($url-standard-temp = "/group/vgregion")
 #set ($user-name-temp = "Namn h&auml;r")
 
 <h1>
-	<span>Inloggad som:</span> ${user-name-temp}
+	<span>Inloggad som: </span> ${user-name-temp} ($userId)
 </h1>
 <ul class="utilities">
 	<li><a href="">Egna inst&auml;llningar</a></li>
@@ -15,4 +17,4 @@
 	<li><a href="${url-signout-temp}">Logga ut</a></li>
 </ul>
 	
-<div class="request-parameter">$request</div>
+##<div class="request-parameter">$request</div>
