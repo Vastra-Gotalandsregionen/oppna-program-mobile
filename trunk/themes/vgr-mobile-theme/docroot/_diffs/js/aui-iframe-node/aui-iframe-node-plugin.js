@@ -89,10 +89,13 @@ AUI.add('aui-iframe-node-plugin', function(A) {
 					try {
 						
 						var iframeDoc = node.get('contentWindow.document');
-						iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
+						var iframeHead = iframe.get('contentWindow.document.body');
 						var iframeBody = node.get('contentWindow.document.body');
+
+						iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
 						
-						iframeBody.setStyle('padding', 0);
+						iframeHead.append('<link type="text/css" rel="stylesheet" href="/vgr-mobile-theme/css/iframe-styles.css" />');
+						iframeBody.addClass('portal-iframe');
 						
 						var iframeMainContent = iframeBody.one('#main-content');
 						var scrollHeight = iframeMainContent.get('scrollHeight');
