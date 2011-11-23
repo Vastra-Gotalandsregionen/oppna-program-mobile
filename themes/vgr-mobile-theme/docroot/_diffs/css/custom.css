@@ -1,5 +1,4 @@
 @import url(css.css);
-@import url(mobile.css);
 
 /* Clearfix style clearing */
 .clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0}
@@ -162,7 +161,6 @@
 }
 
 .mobile-icon-iframe-wrap {
-	height: 10000px;
 	height: 100%;
 	width: 100%;
 }

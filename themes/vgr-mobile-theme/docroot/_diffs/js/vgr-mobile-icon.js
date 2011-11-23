@@ -133,26 +133,15 @@ AUI().add('vgr-mobile-icon',function(A) {
 							iframeHead.append('<link type="text/css" rel="stylesheet" href="/vgr-mobile-theme/css/iframe-styles.css" />');
 							iframeBody.addClass('portal-iframe');
 							
+							A.log('_onIframeLoad after added iframeBody css class');
 							var iframeMainContent = iframeBody.one('#main-content');
+							A.log('_onIframeLoad after lookup iframeMainContent');
 							var scrollHeight = iframeMainContent.get('scrollHeight');
+							A.log('_onIframeLoad after lookup scrollHeight');
 							
 							iframeWrap.setStyle('height', (scrollHeight+1) + 'px');
 							
-							/*
-							var frame = A.Node.getDOMNode(iframe);
-							
-							// Access iframe elements inside a new sandbox
-							AUI({
-								win: frame.contentWindow,
-							    doc: frame.contentWindow.document
-							}).use('aui-base', function(Frame) {
-							    var head = Frame.one('head');
-								var body = Frame.one('body');
-								
-								head.append('<link type="text/css" rel="stylesheet" href="/vgr-mobile-theme/css/iframe-styles.css" />');
-								body.addClass('portal-iframe');
-							});
-							*/
+							A.log('_onIframeLoad after iframeWrap setStyle');
 						}
 						catch(e) {
 							A.log('vgr-mobile-icon _onIframeLoad catch.');
