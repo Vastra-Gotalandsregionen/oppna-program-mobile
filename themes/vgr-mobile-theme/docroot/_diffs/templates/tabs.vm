@@ -8,7 +8,7 @@
     	<section class="portlet tab tab-2 search">
     		<div class="portlet-content">
 				
-				##$mobile_article_2_content
+				$mobile_article_2_content
 				
 				<!--
     			<form class="search" action="http://hitta.vgregion.se/" method="get">

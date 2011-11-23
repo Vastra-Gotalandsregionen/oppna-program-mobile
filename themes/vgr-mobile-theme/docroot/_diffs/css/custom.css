@@ -171,6 +171,12 @@
 	z-index: 20;
 }
 
+/* Tabs search override */
+
+.js #content .portlet.search {
+	background: #fff;
+}
+
 /* SANDBOX
 ================================================================================ */
 
