@@ -79,17 +79,6 @@ AUI.add('aui-iframe-node-plugin', function(A) {
 								loading: 'Laddar&hellip;'
 						}
 					}).loadingmask;
-					
-					instance._host.loadingmask.overlayMask.on('show', function(e) {
-						var instance = this;
-						
-						var overlayMask = e.currentTarget;
-						
-						console.log('loadingMask: ');
-						console.log(overlayMask);
-					}, instance);
-					
-					A.log('IframeNode plugin initializer.');
 				},
 				
 				_defaultLoadIframeFn: function(event) {
@@ -115,7 +104,6 @@ AUI.add('aui-iframe-node-plugin', function(A) {
 						
 						instance._node.setAttribute('height', (scrollHeight+1) + 'px');
 						
-						A.log('_defaultLoadIframeFn try last');
 					}
 					catch (e) {
 						A.log('_defaultLoadIframeFn catch');

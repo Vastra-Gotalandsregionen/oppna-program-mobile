@@ -1,6 +1,10 @@
 /* Overriding styles
 ================================================================================ */
 
+body {
+	padding: 0;
+}
+
 .portal-iframe .columns-max {
 	padding: 0;
 }

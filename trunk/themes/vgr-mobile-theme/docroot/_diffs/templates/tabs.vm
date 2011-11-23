@@ -3,7 +3,7 @@
     	<section class="portlet tab tab-1 workwatch">
     		<div class="portlet-content">
 
-				##$mobile_article_1_content
+				$mobile_article_1_content
 				
 				<!--
     			<ul class="utilities">

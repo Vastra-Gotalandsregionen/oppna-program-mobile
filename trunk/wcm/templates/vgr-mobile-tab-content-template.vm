@@ -14,9 +14,10 @@
                 		<div class="tabs-iframe-wrap">
         					## Temp check
         					#if($contentItem.iframeURL.data != "")
-        						<iframe class="tabs-iframe" title="" frameborder="0" src="${contentItem.iframeURL.data}" width="100%" height="100%"></iframe>
+								<a href="${contentItem.iframeURL.data}" class="aui-helper-hidden tabs-iframe-link"></a>
+                                <div class="tabs-iframe-ctn"></div>	
         					#else
-        						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis justo vel augue luctus dignissim. Sed feugiat, mi sed suscipit mattis, erat dolor iaculis massa, nec euismod sem elit nec ipsum.</p>
+        						<p>No iframe url. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis justo vel augue luctus dignissim. Sed feugiat, mi sed suscipit mattis, erat dolor iaculis massa, nec euismod sem elit nec ipsum.</p>
         					#end
         				</div>
 					</li>
