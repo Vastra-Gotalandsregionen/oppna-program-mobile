@@ -1,0 +1,27 @@
+#if($layout_mobile_start_page != $null)
+	#set($layouts_mobile = $layout_mobile_start_page.getChildren())
+#else
+	#set($layouts_mobile = $null)	
+#end	
+
+<div class="portlet navigation">
+	<h1>$layout.getName($locale)</h1>
+	
+	#if($layouts_mobile != $null)
+		#if($layouts_mobile.size() > 0)
+			<ul class="navigate-page">
+    			#foreach($layout_mobile in $layouts_mobile)
+					
+					#if($layout.getLayoutId() == $layout_mobile.getLayoutId())
+						#set($layout_mobile_selected_class = "sel")
+					#else
+						#set($layout_mobile_selected_class = "")
+					#end
+					<li class="$layout_mobile_selected_class">
+						<a href="$layout_mobile.getRegularURL($request)">$layout_mobile.getName($locale)</a>
+					</li>
+    			#end
+			</ul>
+		#end
+	#end
+</div>

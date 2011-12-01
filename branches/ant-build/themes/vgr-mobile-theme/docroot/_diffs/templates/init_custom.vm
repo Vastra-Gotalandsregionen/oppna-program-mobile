@@ -1,0 +1,99 @@
+## ---------- Null ---------- ##
+#set ($null = $someNeverUserVariable)
+
+## ---------- Classes ---------- ##
+
+#set($class_name_company = "com.liferay.portal.model.Company")
+#set($class_name_group = "com.liferay.portal.model.Group")
+
+## ---------- Expando ---------- ##
+
+#set($expando_default_table = "CUSTOM_FIELDS")
+
+#set( $exp_col_mobile_start_page = "MOBILE_START_PAGE" )
+
+#set( $exp_col_mobile_article_1 = "MOBILE_ARTICLE_1" )
+#set( $exp_col_mobile_article_2 = "MOBILE_ARTICLE_2" )
+#set( $exp_col_mobile_article_3 = "MOBILE_ARTICLE_3" )
+
+
+## ---------- Services ---------- ##
+#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutLocalService"))
+
+
+## ---------- Expando Values ---------- ##
+
+##
+
+#set ( $layout_id_mobile_start_page = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_start_page, $group_id) )
+	
+#set ( $article_id_mobile_article_1 = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_article_1, $group_id, "") )
+
+#set ( $article_id_mobile_article_2 = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_article_2, $group_id, "") )
+
+#set ( $article_id_mobile_article_3 = $expandoValueLocalService.getData(
+	$company_id, $class_name_group, $expando_default_table, $exp_col_mobile_article_3, $group_id, "") )
+	
+
+## ---------- Mobile Start Page ---------- ##
+
+#set($layout_mobile_start_page = $layoutLocalService.getLayout($group_id, true, $layout_id_mobile_start_page) )	
+	
+## ---------- Tabs ---------- ##
+
+#set($show_tabs = $is_signed_in)
+
+#set ($mobile_article_template_id=$null)
+
+#set($mobile_article_1_content=$journalContentUtil.getContent($group_id, $article_id_mobile_article_1, $mobile_article_template_id, "$locale", $theme_display))
+#set($mobile_article_2_content=$journalContentUtil.getContent($group_id, $article_id_mobile_article_2, $mobile_article_template_id, "$locale", $theme_display))
+#set($mobile_article_3_content=$journalContentUtil.getContent($group_id, $article_id_mobile_article_3, $mobile_article_template_id, "$locale", $theme_display))
+
+#if($mobile_article_1_content == $null)
+	#set($mobile_article_1_content = "")
+#end
+#if($mobile_article_2_content == $null)
+	#set($mobile_article_2_content = "")
+#end
+#if($mobile_article_2_content == $null)
+	#set($mobile_article_2_content = "")
+#end
+
+
+## ---------- Tab Names (in Footer) ---------- ##
+
+#set($tab_name_start = "Start")
+#set($tab_name_work = "Koll p&aring; jobbet")
+#set($tab_name_search = "S&ouml;k")
+#set($tab_name_user = $user.getScreenName())
+
+
+## ---------- Dockbar ---------- ##
+
+#set($render_dockbar = false)
+##set($render_dockbar_for_omni_admin = false)
+
+#*
+#if($permissionChecker.isOmniadmin() && $render_dockbar_for_omni_admin)
+	#set($render_dockbar = true)	
+#end
+*#
+
+#if($is_signed_in)
+	#set ( $exp_mobile_render_dockbar = $user.getExpandoBridge().getAttribute("mobile_render_dockbar") )
+	
+	#if($exp_mobile_render_dockbar)
+		#set($render_dockbar = true)
+	#end
+#end	
+
+
+#set($css_dockbar_class = "dockbar-" + $render_dockbar)
+
+## ---------- Node info ---------- ##
+
+#set($hide_node_info = true)
+

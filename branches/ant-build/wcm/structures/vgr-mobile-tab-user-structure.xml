@@ -1,0 +1,3 @@
+<root>
+	<dynamic-element name='field' type='text' index-type='' repeatable='false'></dynamic-element>
+</root>
