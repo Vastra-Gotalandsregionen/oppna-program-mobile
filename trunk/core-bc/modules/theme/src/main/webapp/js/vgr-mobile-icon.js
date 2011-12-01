@@ -133,15 +133,26 @@ AUI().add('vgr-mobile-icon',function(A) {
 							iframeHead.append('<link type="text/css" rel="stylesheet" href="/vgr-mobile-theme/css/iframe-styles.css" />');
 							iframeBody.addClass('portal-iframe');
 							
-							A.log('_onIframeLoad after added iframeBody css class');
+							var bodyNode = A.one('body');
+							var headerNode = instance.get(HEADER_NODE);
+							var headerScrollHeight = headerNode.get('scrollHeight');
+							var winHeight = bodyNode.get('winHeight');
+							
+							var overlayWrap = iframeWrap.ancestor('.mobile-icon-overlay');
+							var overlayHd = overlayWrap.one('.aui-widget-hd');
+							var overlayHdScrollHeight = overlayHd.get('scrollHeight');
+							
+							var contentHeight = winHeight-headerScrollHeight-overlayHdScrollHeight;
+							
 							var iframeMainContent = iframeBody.one('#main-content');
-							A.log('_onIframeLoad after lookup iframeMainContent');
 							var scrollHeight = iframeMainContent.get('scrollHeight');
-							A.log('_onIframeLoad after lookup scrollHeight');
 							
-							iframeWrap.setStyle('height', (scrollHeight+1) + 'px');
+							var iframeNewHeight = scrollHeight+1;
+							if(scrollHeight < contentHeight) {
+								iframeNewHeight = contentHeight;	
+							}
 							
-							A.log('_onIframeLoad after iframeWrap setStyle');
+							iframeWrap.setStyle('height', (iframeNewHeight) + 'px');
 						}
 						catch(e) {
 							A.log('vgr-mobile-icon _onIframeLoad catch.');
