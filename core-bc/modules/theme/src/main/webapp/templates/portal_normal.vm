@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+	$theme.include($top_head_include)
+	
+	#css ("$css_folder/mobile.css")
+	
+	#parse ("$full_templates_path/hide_node_info.vm")
+</head>
+
+<body class="$css_class $css_dockbar_class">
+
+#if($render_dockbar)
+	#dockbar()
+#end
+
+<div id="wrapper">
+	
+	<header id="header" role="banner">
+		<div class="logo">
+			<a href="$company_url">
+				<img src="$images_folder/common/t.gif" width="44" height="37" alt="$company_name" />
+			</a>
+		</div>
+		#parse ("$full_templates_path/navigation.vm")
+	</header>
+	
+	<div id="content">
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+		#parse ("$full_templates_path/tabs.vm")
+	</div>
+
+    <footer id="footer" role="contentinfo">
+		#parse ("$full_templates_path/footer.vm")
+    </footer>
+</div>
+
+</body>
+
+$theme.include($bottom_include)
+
+#js ("$javascript_folder/jquery.js")
+#js ("$javascript_folder/iscroll.js")
+#js ("$javascript_folder/mobile_jquery.js")
+#js ("$javascript_folder/vgr-mobile-icon.js")
+#js ("$javascript_folder/aui-iframe-node/aui-iframe-node-plugin.js")
+#js ("$javascript_folder/vgr-mobile-instance.js")
+
+</html>

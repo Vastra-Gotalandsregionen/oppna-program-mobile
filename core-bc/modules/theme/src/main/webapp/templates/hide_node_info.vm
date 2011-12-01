@@ -1,0 +1,11 @@
+#if($hide_node_info)
+    <script type="text/javascript">
+    	AUI().ready('aui-node', function(A) {
+			A.all('#content > .portlet-msg-info').each(function(node, index, nodeList) {
+				if(node.html().indexOf('Nod: ') != -1) {
+					node.hide();
+				}
+			});
+    	});
+    </script>
+#end

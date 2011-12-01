@@ -1,0 +1,45 @@
+#if($show_tabs)
+    <div class="tabs">
+    	<section class="portlet tab tab-1 workwatch">
+    		<div class="portlet-content">
+				$mobile_article_1_content
+    		</div>
+    	</section>
+    	<section class="portlet tab tab-2 search">
+    		<div class="portlet-content">
+				
+				$mobile_article_2_content
+				
+				<!--
+    			<form class="search" action="http://hitta.vgregion.se/" method="get">
+    				<label for="q">S&ouml;k p&aring; hitta.vgregion.se:</label>
+    				<input type="search" id="q" name="q" />
+    				<input type="submit" value="S&ouml;k" />
+    			</form>
+				-->
+    		</div>
+    	</section>
+    	<section class="portlet tab tab-3 user">
+    		<div class="portlet-content">
+				##$mobile_article_3_content
+				## Intial plan was to include the content below in an article
+				## But it appears like statically included wcm articles cannot
+				## access the reqeust parameters in their templates
+				## (i.e. the $request variable is empty in the velocity template)
+				##
+				## Also, "egna installningar" is commented out since there is no single point for user settings in the region portal
+
+				#set ($url-standard-temp = "/group/vgregion")
+                
+                <h1>
+                	<span>Inloggad som: </span> $user_name
+                </h1>
+                <ul class="utilities">
+                	##<li><a href="">Egna inst&auml;llningar</a></li>
+                	<li><a href="$url-standard-temp">Byt till standard</a></li>
+                	<li><a href="$sign_out_url">Logga ut</a></li>
+                </ul>
+    		</div>
+    	</section>
+    </div>
+#end
