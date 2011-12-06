@@ -1,11 +1,11 @@
 #if($show_tabs)
     <div class="tabs">
-    	<section class="portlet tab tab-1 workwatch">
+    	<section class="portlet mobile-tab tab tab-1 workwatch">
     		<div class="portlet-content">
 				$mobile_article_1_content
     		</div>
     	</section>
-    	<section class="portlet tab tab-2 search">
+    	<section class="portlet mobile-tab tab tab-2 search">
     		<div class="portlet-content">
 				
 				$mobile_article_2_content
@@ -19,7 +19,7 @@
 				-->
     		</div>
     	</section>
-    	<section class="portlet tab tab-3 user">
+    	<section class="portlet mobile-tab tab tab-3 user">
     		<div class="portlet-content">
 				##$mobile_article_3_content
 				## Intial plan was to include the content below in an article
