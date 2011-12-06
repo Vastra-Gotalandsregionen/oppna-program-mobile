@@ -12,9 +12,13 @@ AUI().add('vgr-mobile-icon',function(A) {
 			return Array.prototype.slice.call(arguments).join(SPACE);
 		},
 		
-		HEADER_NODE = 'headerNode',
-		FOOTER_NODE = 'footerNode',
 		
+
+		ALWAYS_USE_DEFAULT_HEIGHT = 'alwaysUseDefaultHeight',		
+		FOOTER_NODE = 'footerNode',
+		HEADER_NODE = 'headerNode',
+		HISTORY_VIEW = 'view',
+		IFRAME_DEFAULT_HEIGHT = 'iframeDefaultHeight',
 		HREF = 'href',
 		NAME = 'mobile-icon',
 		NS = 'mobile-icon',
@@ -37,11 +41,20 @@ AUI().add('vgr-mobile-icon',function(A) {
 	var VgrMobileIcon = A.Component.create(
 			{
 				ATTRS: {
+					alwaysUseDefaultHeight: {
+						value: true
+					},
+					iframeDefaultHeight: {
+						value: 10000
+					}
 				},
 				EXTENDS: A.Component,
 				NAME: NAME,
 				NS: NS,
 				prototype: {
+					_currentOverlay: null,
+					_history: null,
+					_initialHash: null,
 					initializer: function(config) {
 						var instance = this;
 						
@@ -50,6 +63,14 @@ AUI().add('vgr-mobile-icon',function(A) {
 						
 						instance.set(HEADER_NODE, headerNode);
 						instance.set(FOOTER_NODE, footerNode);
+						
+						instance._history = new A.HistoryHash();
+						
+						if(document.location.hash != '') {
+							instance._history.addValue(HISTORY_VIEW, document.location.hash, {merge: false});	
+						}
+						
+						instance._initialHash = document.location.hash;
 					},
 					
 					renderUI: function() {
@@ -60,18 +81,21 @@ AUI().add('vgr-mobile-icon',function(A) {
 						var instance = this;
 						
 						instance._bindMobileIconLinks();
+						
+						// Bind history change
+						A.on('history:change', instance._onHistoryChange, instance);
+						
+						console.log('bindUI - historyView is: ' + instance._history.get(HISTORY_VIEW));
 					},
 					
-					_afterMobileOverlayRender: function(e, params) {
+					_afterMobileOverlayRender: function(e) {
 						var instance = this;
 						
-						var overlay = params[0];
-						
-						var contentBox = overlay.get('contentBox');
+						var contentBox = instance._currentOverlay.get('contentBox');
 						
 						var closeNode = contentBox.one('.mobile-icon-overlay-hd-close');
 						
-						closeNode.on('click', instance._onMobileOverlayCloseClick, instance, [overlay]);
+						closeNode.on('click', instance._onMobileOverlayCloseClick, instance);
 						
 						var iframeWrap = contentBox.one('.mobile-icon-iframe-wrap');
 						
@@ -86,13 +110,9 @@ AUI().add('vgr-mobile-icon',function(A) {
 							
 							var loadingMask = e.currentTarget;
 							
-							console.log('loadingMask: ');
-							console.log(loadingMask);
+							var contentBox = instance._currentOverlay.get('contentBox');
 							
-							var overlay = params[0];
-							var contentBox = overlay.get('contentBox');
-							
-						}, instance, [overlay]);
+						}, instance);
 						
 						loadingMask.show();
 						
@@ -101,7 +121,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 				        iframe.on('load', instance._onIframeLoad, instance);
 					},
 					
-					_beforeMobileOverlayRender: function(e, params) {
+					_beforeMobileOverlayRender: function(e) {
 						var instance = this;
 						
 						instance._toggleFooterNode(false);	
@@ -119,6 +139,25 @@ AUI().add('vgr-mobile-icon',function(A) {
 						var instance= this;
 					},
 					
+					_onHistoryChange: function(e) {
+						var instance= this;
+						
+  						var changed = e.changed;
+  						var removed = e.removed;
+						
+						console.log('onHistoryChange');
+
+						var changedView = changed[HISTORY_VIEW];
+
+						if(isUndefined(changedView)) {
+							 if(!isNull(instance._currentOverlay)) {
+							 	instance._currentOverlay.destroy();
+								instance._toggleFooterNode(true);
+							 }
+						}
+
+					},
+					
 					_onIframeLoad: function(e) {
 						var instance = this;
 						var iframe = e.currentTarget;
@@ -133,29 +172,37 @@ AUI().add('vgr-mobile-icon',function(A) {
 							iframeHead.append('<link type="text/css" rel="stylesheet" href="/vgr-mobile-theme/css/iframe-styles.css" />');
 							iframeBody.addClass('portal-iframe');
 							
-							var bodyNode = A.one('body');
-							var headerNode = instance.get(HEADER_NODE);
-							var headerScrollHeight = headerNode.get('scrollHeight');
-							var winHeight = bodyNode.get('winHeight');
+							var iframeNewHeight = instance.get(IFRAME_DEFAULT_HEIGHT);
 							
-							var overlayWrap = iframeWrap.ancestor('.mobile-icon-overlay');
-							var overlayHd = overlayWrap.one('.aui-widget-hd');
-							var overlayHdScrollHeight = overlayHd.get('scrollHeight');
-							
-							var contentHeight = winHeight-headerScrollHeight-overlayHdScrollHeight;
-							
-							var iframeMainContent = iframeBody.one('#main-content');
-							var scrollHeight = iframeMainContent.get('scrollHeight');
-							
-							var iframeNewHeight = scrollHeight+1;
-							if(scrollHeight < contentHeight) {
-								iframeNewHeight = contentHeight;	
+							if(!instance.get(ALWAYS_USE_DEFAULT_HEIGHT)) {
+								var bodyNode = A.one('body');
+								var headerNode = instance.get(HEADER_NODE);
+								var headerScrollHeight = headerNode.get('scrollHeight');
+								var winHeight = bodyNode.get('winHeight');
+								
+								var overlayWrap = iframeWrap.ancestor('.mobile-icon-overlay');
+								var overlayHd = overlayWrap.one('.aui-widget-hd');
+								var overlayHdScrollHeight = overlayHd.get('scrollHeight');
+								
+								var contentHeight = winHeight-headerScrollHeight-overlayHdScrollHeight;
+								
+								var iframeMainContent = iframeBody.one('#main-content');
+								var scrollHeight = iframeMainContent.get('scrollHeight');
+								
+								var iframeNewHeight = scrollHeight+1;
+								if(scrollHeight < contentHeight) {
+									iframeNewHeight = contentHeight;	
+								}
 							}
+							
+							//A.log('iframeNewHeight is: ' + iframeNewHeight);
 							
 							iframeWrap.setStyle('height', (iframeNewHeight) + 'px');
 						}
 						catch(e) {
 							A.log('vgr-mobile-icon _onIframeLoad catch.');
+							
+							iframeWrap.setStyle('height', (instance.get(IFRAME_DEFAULT_HEIGHT)) + 'px');
 						}
 						
 						iframeWrap.loadingmask.hide();
@@ -172,13 +219,15 @@ AUI().add('vgr-mobile-icon',function(A) {
 						instance._showMobileOverlay(linkNode);
 					},
 					
-					_onMobileOverlayCloseClick: function(e, params) {
+					_onMobileOverlayCloseClick: function(e) {
 						var instance = this;
-						var overlay = params[0];
 						
 						e.halt();
 						
-						overlay.destroy();
+						instance._currentOverlay.destroy();
+						
+						instance._history.replaceValue(HISTORY_VIEW, instance._initialHash);
+						
 						instance._toggleFooterNode(true);
 					},
 					
@@ -202,7 +251,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 							url: url
 						});
 						
-						var overlay = new A.OverlayBase({
+						instance._currentOverlay = new A.OverlayBase({
 							align: {
 								node: instance.get(HEADER_NODE),
 								points: ['tl', 'bl']
@@ -215,12 +264,19 @@ AUI().add('vgr-mobile-icon',function(A) {
 						});
 						
 						// On before render listener
-						overlay.before('render', instance._beforeMobileOverlayRender, instance, [overlay]);
+						instance._currentOverlay.before('render', instance._beforeMobileOverlayRender, instance);
 						
 						// On after render listener
-						overlay.after('render', instance._afterMobileOverlayRender, instance, [overlay]);
+						instance._currentOverlay.after('render', instance._afterMobileOverlayRender, instance);
 						
-						overlay.render();
+						instance._currentOverlay.render();
+
+						var portletNode = linkNode.ancestor('.portlet-boundary');
+						
+						if(!isNull(portletNode)) {
+							var portletId = portletNode.getAttribute('id');
+							instance._history.addValue(HISTORY_VIEW, portletId);
+						}
 					},
 					
 					_toggleFooterNode: function(showBoolean) {
@@ -239,6 +295,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 						}
 					}
 					
+					
 				}
 			}
 	);
@@ -251,6 +308,7 @@ AUI().add('vgr-mobile-icon',function(A) {
 			'aui-dialog',
 			'aui-loading-mask',
 			'aui-overlay',
+			'history',
 			'overlay'
       ]
 	}

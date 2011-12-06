@@ -54,9 +54,8 @@
 
 $theme.include($bottom_include)
 
-#js ("$javascript_folder/jquery.js")
 #js ("$javascript_folder/iscroll.js")
-#js ("$javascript_folder/mobile_jquery.js")
+#js ("$javascript_folder/vgr-mobile.js")
 #js ("$javascript_folder/vgr-mobile-icon.js")
 #js ("$javascript_folder/aui-iframe-node/aui-iframe-node-plugin.js")
 #js ("$javascript_folder/vgr-mobile-instance.js")
