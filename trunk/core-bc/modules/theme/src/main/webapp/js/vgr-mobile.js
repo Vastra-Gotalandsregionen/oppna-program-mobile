@@ -6,12 +6,16 @@ document.body.className += ' js';
 
 // Hide navigate page
 var navigatePageNodes = getElementsByClassName(document, 'ul', 'navigate-page');
-navigatePageNodes[0].className += ' hidden';
+navigatePageNodes[0].className += ' aui-helper-hidden';
+
+// Hide tab nav
+var tabNavNodes = getElementsByClassName(document, 'div', 'tab-nav');
+tabNavNodes[0].className += ' aui-helper-hidden';
 
 // Hide all mobile tab content nodes
 var tabContentNodes = getElementsByClassName(document, '*', 'mobile-tab');
 for(var i=0; i < tabContentNodes.length;i++) {
-	tabContentNodes[i].className += ' hidden';
+	tabContentNodes[i].className += ' aui-helper-hidden';
 }
 
 AUI().ready('aui-base', 'aui-datatype', 'event', 'event-simulate', 'node-event-simulate', function(A) {
@@ -25,18 +29,26 @@ AUI().ready('aui-base', 'aui-datatype', 'event', 'event-simulate', 'node-event-s
 	switchDashboardNode.on((!!('ontouchend' in window) ? 'touchend' : 'click'), function(e) {
 		var currentTarget = e.currentTarget;
 		currentTarget.toggleClass('active').siblings('.navigate-page').toggle();
-	});	
+	});
+	
+	var contentNode = A.one('#content');
+	
+	// Hide navigate page menu if active when clicking on the main content node
+	contentNode.on((!!('ontouchend' in window) ? 'touchend' : 'click'), function(e) {
+		var currentTarget = e.currentTarget;
+		if(switchDashboardNode.hasClass('active')) {
+			switchDashboardNode.simulate((!!('ontouchend' in window) ? 'touchend' : 'click'));
+		}
+	});
 
 	// Show tab navigation
-	tabNavNode.removeClass('hidden');
+	tabNavNode.show();
 	
 	// Assign event handlers to tab buttons
 	tabNavNode.all('button').on((!!('ontouchend' in window)?'touchend':'click'), function(e) {
 		e.halt();
 		
 		var currentTarget = e.currentTarget;
-		
-		//console.log(currentTarget);
 		
 		var button = currentTarget,
 			ul = button.ancestor('ul'),
@@ -64,14 +76,13 @@ AUI().ready('aui-base', 'aui-datatype', 'event', 'event-simulate', 'node-event-s
 		
 		if(button.hasClass('start')) {
 			// Show dashboard
-			A.one('.dashboard').removeClass('hidden');
+			A.one('.dashboard').show();
 		} else {
-			
 			// Hide dashboard
-			A.one('.dashboard').addClass('hidden');
+			A.one('.dashboard').hide();
 		}
 		// Hide all tabs
-		A.all('.tabs > .tab').addClass('hidden');
+		A.all('.tabs > .tab').hide();
 		// Make all buttons unselected
 		ul.all('li').removeClass('sel');
 		// ...and display this button and its tab
@@ -79,7 +90,7 @@ AUI().ready('aui-base', 'aui-datatype', 'event', 'event-simulate', 'node-event-s
 		
 		// Show current tab
 		if(A.one('.tabs > .tab.' + liClass)) {
-			A.one('.tabs > .tab.' + liClass).removeClass('hidden');	
+			A.one('.tabs > .tab.' + liClass).show();	
 		}
 		
 		// Update hash (se why below)

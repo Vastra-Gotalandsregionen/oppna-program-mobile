@@ -1,5 +1,5 @@
 #if($show_tabs)
-    <div class="tab-nav hidden">
+    <div class="tab-nav">
     	<ul>
     		<li class="tab-0 sel"><button type="button" class="start"><span>$tab_name_start</span></button></li>
     		<li class="tab-1"><button type="button" class="work"><span>$tab_name_work</span></button></li>
