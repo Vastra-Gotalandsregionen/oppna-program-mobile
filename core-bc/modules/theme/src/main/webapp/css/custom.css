@@ -1,12 +1,97 @@
 @import url(css.css);
 
-/* Clearfix style clearing */
-.clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0}
-.clearfix{display:inline-block}
-* html .clearfix{height:1%}
-.clearfix{display:block}
+/*-------------------------------------------------------------------------------------
+VGR Mobile Theme
+
+@author:	Erik Andersson
+@date:		2011-12-07
+
+/- Structure
+-------------------------------------------------------------- -/
+
+=Font faces
+=Base blocks
+=Common classes
+=Navigation
+=Layout
+=Forms
+=Modules and Content
+=Liferay Portlets
+=Custom Portlets
+=Articles
+=Media Rules
+=Sandbox
+
+/- Colors
+-------------------------------------------------------------- -/
+
+VGR Blue				#005095
+VGR Blue semi-light		#06579c
+VGR Blue light			#2e71a8
 
 
+/- Todo
+-------------------------------------------------------------- -/
+
+
+
+-------------------------------------------------------------------------------------*/
+
+
+/*-------------------------------------------------------------------------------------
+=Font faces
+-------------------------------------------------------------------------------------*/
+
+
+
+/*-------------------------------------------------------------------------------------
+=Base blocks
+-------------------------------------------------------------------------------------*/
+
+/* html and body
+-------------------------------------------------------------- */
+
+body {
+	background:#1d2527;
+	font:13px "Helvetica Neue",Helvetica,sans-serif;
+	-webkit-text-size-adjust:100%;
+}
+
+/* header
+-------------------------------------------------------------- */
+
+#header {
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:100;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:100%;
+	height:49px;
+	background:#00579c;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#005095), color-stop(100%,#0a5da1));
+	background:-moz-linear-gradient(top, #005095 0%, #0a5da1 100%);
+	background:-webkit-linear-gradient(top, #005095 0%, #0a5da1 100%);
+	background:linear-gradient(top, #005095 0%, #0a5da1 100%);
+}
+.iscroll #header {position:absolute;}
+#header .logo {
+	position:absolute;
+	top:0;
+	left:0;
+	padding:6px 12px;
+	background:url(../images/common/logo.png) no-repeat 12px 6px;
+}
+#header .logo img {
+	display:block;
+	width:44px;
+	height:37px;
+	color:#fff;
+}
+.login #header .logo {background-image:url(../images/common/logo-large.png);}
+.login #header .logo img {width:184px;}
 
 /*- Push header down to cater for dockbar when signed in -*/
 .dockbar-true #header {
@@ -17,35 +102,405 @@
 	padding-top: 49px;
 }
 
-.portlet,
-.portlet .app-icon,
+/* content
+-------------------------------------------------------------- */
+
+#content {padding:49px 0 40px;}
+.iscroll #content {
+	position:absolute;
+	z-index:1;
+	top:49px;
+	bottom:40px;
+	left:0;
+	width:100%;
+	overflow:auto;
+	padding:0;
+}
+.iscroll #main-content {
+	position:absolute;
+	z-index:1;
+	width:100%;
+}
+
+/* Footer
+-------------------------------------------------------------- */
+
+#footer {
+	position:fixed;
+	bottom:0;
+	left:0;
+	z-index:100;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	width:100%;
+	height:44px;
+	border-top:1px solid #084d84;
+	background:#1463A2; /* Old browsers */
+	background:-moz-linear-gradient(top, #1463A2 0%, #065ABC 50%, #0C4EC7 51%, #0C3E80 100%); /* FF3.6+ */
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#1463A2), color-stop(50%,#065ABC), color-stop(51%,#0C4EC7), color-stop(100%,#0C3E80)); /* Chrome,Safari4+ */
+	background:-webkit-linear-gradient(top, #1463A2 0%,#065ABC 50%,#0C4EC7 51%,#0C3E80 100%); /* Chrome10+,Safari5.1+ */
+	background:-o-linear-gradient(top, #1463A2 0%,#065ABC 50%,#0C4EC7 51%,#0C3E80 100%); /* Opera11.10+ */
+	background:linear-gradient(top, #1463A2 0%,#065ABC 50%,#0C4EC7 51%,#0C3E80 100%); /* W3C */
+}
+.iscroll #footer {position:absolute;}
+#footer p {margin:0;}
+
+
+/* Dashboard
+-------------------------------------------------------------- */
+
+.dashboard {
+	width:320px;
+	margin:0 auto;
+	padding:16px 0;
+}
+
+/*-------------------------------------------------------------------------------------
+=Common classes
+-------------------------------------------------------------------------------------*/
+
+.clear {
+	clear: both;
+}
+
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+.el-hide {
+    display: none;
+}
+
+/* Clearfix style clearing */
+.clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0}
+.clearfix{display:inline-block}
+* html .clearfix{height:1%}
+.clearfix{display:block}
+
+.opens-new-window-accessible {
+	background: url(../images/icons/icon-popup.png) 0 0 no-repeat;
+	font-size: 0;
+	overflow: hidden;
+	text-indent: -5000px;
+}
+
+/* Easy clearing of floats
+ * See http://positioniseverything.net/easyclearing.html
+-------------------------------------------------------------- */
+
+.cf:after {
+	display:block;
+	clear:both;
+	height:0;
+	visibility:hidden;
+	content:" ";
+	font-size:0;
+}
+
+/* Structural elements
+ * Not visible when CSS is enabled but visible for screen readers
+-------------------------------------------------------------- */
+
+.structural {
+	position:absolute;
+	height:1px;
+	width:1px; 
+	overflow:hidden;
+	clip:rect(1px, 1px, 1px, 1px);
+}
+
+/* Override off-screen positioned elements to prevent them from breaking iScroll. */
+.iscroll .tab .structural {
+	position:absolute;
+	left:auto;
+	height:1px;
+	width:1px; 
+	overflow:hidden;
+	clip:rect(1px, 1px, 1px, 1px);
+}
+
+/* Hidden elements
+ * Hidden even for screen readers
+-------------------------------------------------------------- */
+
+.hidden {
+	display:none;
+	visibility:hidden;
+}
+
+/* Iframes
+-------------------------------------------------------------- */
+
+.external-content {
+	width:100%;
+	min-height:400px;
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+/*-------------------------------------------------------------------------------------
+=Navigation
+-------------------------------------------------------------------------------------*/
+
+/* Dashboard Navigation
+-------------------------------------------------------------- */
+
 .portlet.navigation {
-	background: transparent;
+	position: relative;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding-left:68px;
+	padding-right:12px;
+	line-height:49px;
+	text-align: right;
 }
-
-.columns-max .app-icon {
-	background: #fff;
-	width: 100%;
+.portlet.navigation h1 {
+	float:left;
+	overflow:hidden;
+	margin:0;
+	color:#fff;
+	font-size: 1.6em;
+	text-overflow:ellipsis;
 }
-
-.portlet-login {
-	background: transparent;
+.portlet.navigation .switch-dashboard {
+	display: inline-block;
+	overflow:hidden;
+	padding:6px 6px 6px 8px;
+	border:2px solid #ccc;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-moz-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.5);
+	box-shadow: 0 0 4px 2px rgba(0,0,0,0.2);
+	color: #fff;
+	background: #00579c;
+	background: -moz-linear-gradient(top, #00579c 0%, #0075D6 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00579c), color-stop(100%,#0075D6));
+	background: -webkit-linear-gradient(top, #00579c 0%,#0075D6 100%);
+	background: -o-linear-gradient(top, #00579c 0%,#0075D6 100%);
+	background: linear-gradient(top, #00579c 0%,#0075D6 100%);
+	-webkit-background-clip:padding-box;
+	font:bold 13px/normal "Helvetica Neue",Helvetica,sans-serif;
+	cursor: pointer;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.portlet.navigation .switch-dashboard span {
+	display: inline-block;
+	padding-right: 22px;
+	background:url(../images/icons/arrow-white.png) no-repeat 100% 50%;
+}
+.portlet.navigation .switch-dashboard.active {
+	border-color: #fff;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background: #0075D6;
+	background: -moz-linear-gradient(top, #0075D6 0%, #00579c 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0075D6), color-stop(100%,#00579c));
+	background: -webkit-linear-gradient(top, #0075D6 0%,#00579c 100%);
+	background: -o-linear-gradient(top, #0075D6 0%,#00579c 100%);
+	background: linear-gradient(top, #0075D6 0%,#00579c 100%);
 }
 
 .portlet.navigation button.switch-dashboard {
 	text-shadow: 0px 0px #FFF;
 }
 
-/* Search
+.portlet.navigation .navigate-page {
+	position:absolute;
+	top:40px;
+	right:12px;
+	margin:0;
+	padding:0;
+	list-style:none;
+	background:#fff;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	-o-border-radius:5px;
+	-ms-border-radius:5px;
+	border-radius:5px;
+	-moz-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+	-webkit-box-shadow:0 4px 10px rgba(0,0,0,0.3);
+	box-shadow:0 4px 10px rgba(0,0,0,0.3);
+	text-align: left;
+}
+.portlet.navigation .navigate-page li + li {border-top:1px solid #e0e0e0;}
+.portlet.navigation .navigate-page a,
+.portlet.navigation .navigate-page strong {
+	display:block;
+	padding:12px 12px;
+	color:#000;
+	font-weight:bold;
+	font-size:17px;
+	line-height:1;
+	text-decoration:none;
+	-webkit-tap-highlight-color:rgba(20,99,162,0.2);
+	-webkit-touch-callout:none;
+}
+.portlet.navigation .navigate-page a {
+	text-decoration:none;
+	-webkit-tap-highlight-color:rgba(20,99,162,0.2);
+	-webkit-touch-callout:none;
+}
+.portlet.navigation .navigate-page a:hover,
+.portlet.navigation .navigate-page a:focus,
+.navigate-page .sel strong {background-color:rgba(20,99,162,0.2);}
+.portlet.navigation .navigate-page .sel,
+.portlet.navigation .navigate-page .sel + li {border-color: #aaa;}
+
+
+/*-------------------------------------------------------------------------------------
+=Layout
+-------------------------------------------------------------------------------------*/
+
+
+/*-------------------------------------------------------------------------------------
+=Forms
+-------------------------------------------------------------------------------------*/
+
+
+/*-------------------------------------------------------------------------------------
+=Modules and Content
+-------------------------------------------------------------------------------------*/
+
+/* Application Icons/Buttons
 -------------------------------------------------------------- */
-.js .portlet.search {
-	background: #fff;
-	color: 000;
+
+.app-icon {
+	float:left;
+	width:106px;
+	margin:0 0 16px;
+	text-align:center;
+}
+.app-icon a.app-link:before {
+	content:" ";
+	display:block;
+	width:32px;
+	height:32px;
+	margin:0 auto 3px;
+	padding:4px;
+	border:2px solid #444;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	background-color:#000;
+	background-repeat:no-repeat;
+	background-position:50% 50%;
+	-webkit-background-clip:padding-box;
+}
+.app-news a:before {background-image:url(../images/icons/news.png);}
+.app-work a:before {background-image:url(../images/icons/work.png);}
+.app-mail a:before {background-image:url(../images/icons/email.png);}
+.app-todos a:before {background-image:url(../images/icons/todos.png);}
+.app-documents a:before {background-image:url(../images/icons/documents.png);}
+.app-contacts a:before {background-image:url(../images/icons/contacts.png);}
+.app-calendar a:before {background-image:url(../images/icons/calendar.png);}
+.app-movies a:before {background-image:url(../images/icons/movies.png);}
+.app-watch a:before {background-image:url(../images/icons/radar.png);}
+.app-topics a:before {background-image:url(../images/icons/email.png);}
+.app-searches a:before {background-image:url(../images/icons/search.png);}
+.app-updated-documents a:before {background-image:url(../images/icons/email.png);}
+.app-healthcare-info a:before {background-image:url(../images/icons/email.png);}
+.app-healthcare-news a:before {background-image:url(../images/icons/email.png);}
+.app-search-eira a:before {background-image:url(../images/icons/search.png);}
+.app-waiting-times a:before {background-image:url(../images/icons/clock.png);}
+.app-intranet a:before {background-image:url(../images/icons/rolodex.png);}
+.app-icon .portlet-body a {
+	display:inline-block;
+	position:relative;
+	width:80px;
+	color:#fff;
+	text-decoration:none;
+}
+.app-icon .portlet-body h1 {
+	margin:0;
+	overflow:hidden;
+	font:normal 13px "Helvetica Neue",Helvetica, sans-serif;
+	text-align:center;
+	text-overflow:ellipsis;
+}
+.app-icon .count {
+	position:absolute;
+	top:-6px;
+	right:9px;
+	z-index:10;
+	padding:2px;
+	-moz-border-radius:9px;
+	-webkit-border-radius:9px;
+	border-radius:9px;
+	background-color:#fff;
+}
+.app-icon .count span {
+	display:block;
+	padding:2px 5px 3px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	color:#fff;
+	background-color:#b00;
+	font-size:11px;
+	line-height:1;
 }
 
 
-/* LOGIN
-================================================================================ */
+/* Login
+-------------------------------------------------------------- */
+
+.portlet.login {
+	display:table;
+	width:100%;
+	height:100%;
+	padding:0;
+	border:0;
+	color:#fff;
+	background:#1d2527;
+}
+.portlet.login .portlet-body {
+	display:table-cell;
+	text-align:center;
+	vertical-align:middle;
+	padding-bottom:20px;
+}
+.portlet.login form {
+	display:inline-block;
+	width:280px;
+	margin:10px 0;
+	padding:10px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	background:#000;
+	text-align:left;
+}
+.portlet.login h1 {
+	margin:0 0 7px;
+	font-size:17px;
+}
+.portlet.login .text {margin-bottom:10px;}
+.portlet.login label {
+	display:block;
+	margin:0 0 3px;
+	font-weight:bold;
+	font-size:13px;
+}
+.portlet.login input {
+	display:inline-block;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:4px;
+	font:bold 14px "Helvetica Neue", Helvetica, sans-serif;
+}
+.portlet.login input:not([type="submit"]) {
+	width:100%;
+}
+
+/* Login overrides */
 
 .portlet-login {
 	display:table;
@@ -102,8 +557,298 @@
 	display: none;
 }
 
-/* APP ICON OVERLAY
-================================================================================ */
+/* Content Tabs
+-------------------------------------------------------------- */
+
+.tabs .tab {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:1px 0; /* Prevent margins from affecting elements outside tab content */
+	background:#fff;
+}
+
+.js .portlet.search {
+	background: #fff;
+	color: 000;
+}
+
+/* Tabs search override */
+
+.js #content .portlet.search {
+	background: #fff;
+}
+
+/*-- Tabs Navigation ------ */
+
+.tab-nav ul {
+	display:table;
+	table-layout:fixed;
+	width:100%;
+	margin:0;
+	list-style:none;
+}
+.tab-nav li {
+	display:table-cell;
+	width:33.3%;
+	margin:0;
+	padding:0;
+	line-height:1.2;
+	text-align:center;
+	vertical-align:middle;
+}
+.tab-nav button {
+	display:inline-block;
+	width:100%;
+	margin:0;
+	padding:28px 0 2px;
+	border:0;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	-o-border-radius:3px;
+	-ms-border-radius:3px;
+	border-radius:3px;
+	color:#eee;
+	background-color:transparent;
+	background-repeat:no-repeat;
+	background-position:50% -10px;
+	font-size:12px;
+	line-height:1.1;
+	font-family:inherit;
+	text-align:center;
+	text-shadow:0 1px 1px rgba(0,0,0,0.3);
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.tab-nav button span {
+	display:block;
+	width:100%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.tab-nav button.start {background-image:url(../images/icons/start_negative.png);}
+.tab-nav button.work {background-image:url(../images/icons/radar_negative.png);}
+.tab-nav button.search {background-image:url(../images/icons/search_negative.png);}
+.tab-nav button.settings {background-image:url(../images/icons/user_negative.png);}
+.tab-nav button:hover {cursor:pointer;}
+.tab-nav li.sel button {
+	color:#fff;
+	background-color:rgba(255,255,255,0.25);
+}
+
+/*-- Utilities list ------ */
+
+.portlet .utilities,
+.portlet .utilities ul {
+	margin:0;
+	list-style:none;
+}
+.portlet .utilities ul {background:#eee;}
+.portlet .utilities li {
+	position:relative;
+	border-top:1px solid #e0e0e0;
+	font-weight:bold;
+}
+.portlet .utilities li li {font-weight:normal;}
+.portlet .utilities li h2 {margin:0;}
+.portlet .utilities a,
+.portlet .utilities label {
+	display:block;
+	padding:12px 12px;
+	color:#000;
+	font-size:17px;
+	line-height:1;
+	text-decoration:none;
+}
+.portlet .utilities a:active {background-color:#e0e0e0;}
+.portlet .utilities a span {
+	float:left;
+	width:18px;
+	height:18px;
+	margin-right:5px;
+	background:url(../images/icons/arrow.png) no-repeat 0 50%;
+	opacity:0.5;
+	-moz-transform:rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	transform:rotate(-90deg);
+	-moz-transition:all 0.1s ease-in-out;
+	-webkit-transition:all 0.1s ease-in-out;
+}
+/* expanded list item gets a rotated, opaque arrow icon */
+.portlet .utilities .exp a span {
+	opacity:1;
+	-moz-transform:rotate(0deg);
+	-webkit-transform:rotate(0deg);
+	transform:rotate(0deg);
+}
+.portlet .utilities a .status {
+	float:right;
+	width:22%;
+	overflow:hidden;
+	margin-right:11%;
+	color:#666;
+	font-style:normal;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+/* Add form */
+.portlet .utilities form.add {
+	color:#fff;
+	background:#000;
+}
+.portlet .utilities form.add label {
+	display:block;
+	color:inherit;
+}
+.portlet .utilities form.add input {margin:0 12px 12px;}
+.portlet .utilities input {
+	display:inline-block;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:4px;
+	font:bold 14px "Helvetica Neue", Helvetica, sans-serif;
+}
+/* ...hide nested lists and forms */
+.portlet .utilities li > ul,
+.portlet .utilities form {display:none;}
+/* ...show them, and also the add item forms (if they have been triggered to appear) */
+.portlet .utilities .exp.add form.add,
+.portlet .utilities .exp > ul,
+.portlet .utilities .exp > form.todos {
+	display:block;
+	min-height:42px;
+}
+/* TODO's */
+.portlet .utilities ul.todos {
+	display:table;
+	width:100%;
+}
+.portlet .utilities ul.todos li {display:table-row;}
+.portlet .utilities ul.todos li:active {background-color:#e0e0e0;}
+.portlet .utilities ul.todos li div,
+.portlet .utilities ul.todos label {
+	display:table-cell;
+	border-top:1px solid #e0e0e0;
+}
+.portlet .utilities ul.todos li div {
+	width:12px;
+	padding-left:12px;
+}
+.js .portlet .utilities form.todos input[type="submit"] {display:none;}
+/* IM's */
+.portlet .utilities .ims a strong {color:#666;}
+/* Tools */
+.portlet .utilities a.add {
+	position:absolute;
+	top:5px;
+	right:12px;
+	width:20px;
+	height:20px;
+	padding:4px;
+	color:#fff;
+	background:url(../images/icons/add.png) no-repeat;
+	text-align:center;
+}
+.portlet .utilities a.add.exp {opacity:0.2;}
+
+/* Search
+-------------------------------------------------------------- */
+
+.js .portlet.search {
+	color:#fff;
+	background:#1d2527;
+}
+.js .portlet.search .portlet-body {
+	display:table;
+	width:100%;
+	height:100%;
+	text-align:center;
+}
+.js .portlet.search form {
+	display:table-cell;
+	vertical-align:middle;
+	padding-bottom:20px;
+}
+.portlet.search label {
+	display:block;
+	margin:0 0 6px;
+	font-weight:bold;
+	font-size:17px;
+}
+.portlet.search input {
+	display:inline-block;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding:4px;
+	font:bold 14px "Helvetica Neue", Helvetica, sans-serif;
+}
+.js .portlet.search input[type="search"] {
+	width:70%;
+}
+.js .portlet.search input[type="submit"] {
+	width:20%;
+	text-align:center;
+}
+
+/* User profile and settings
+-------------------------------------------------------------- */
+
+.portlet.user h1 {
+	margin:0;
+	padding:8px 16px 8px 48px;
+	background:#f5f5f5 url(../images/icons/user.png) no-repeat 2px 2px;
+	font-size:17px;
+	line-height:1.1;
+}
+.portlet.user h1 span {
+	display:block;
+	color:#666;
+	font-size:12px;
+}
+
+
+/*-------------------------------------------------------------------------------------
+=Liferay Portlets
+-------------------------------------------------------------------------------------*/
+
+/* Portlet wrapper and icons
+-------------------------------------------------------------- */
+
+.portlet,
+.portlet .app-icon,
+.portlet.navigation {
+	background: transparent;
+}
+
+
+/* Login Portlet
+-------------------------------------------------------------- */
+
+
+.portlet-login {
+	background: transparent;
+}
+
+/*-------------------------------------------------------------------------------------
+=Custom Portlets
+-------------------------------------------------------------------------------------*/
+
+/* App Icon
+-------------------------------------------------------------- */
+
+.columns-max .app-icon {
+	background: #fff;
+	width: 100%;
+}
+
+
+/* Mobile Icon
+-------------------------------------------------------------- */
+
+/*------- Mobile Icon Overlay -------*/
 
 .mobile-icon-overlay {}
 
@@ -171,12 +916,21 @@
 	z-index: 20;
 }
 
-/* Tabs search override */
 
-.js #content .portlet.search {
-	background: #fff;
-}
+/*-------------------------------------------------------------------------------------
+=Articles
+-------------------------------------------------------------------------------------*/
 
-/* SANDBOX
-================================================================================ */
+/*------- All articles -------*/
+
+.journal-content-article {}
+
+
+
+/*-------------------------------------------------------------------------------------
+=Sandbox
+-------------------------------------------------------------------------------------*/
+
+/*------- Some testing -------*/
+
 

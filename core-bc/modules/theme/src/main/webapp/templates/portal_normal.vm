@@ -6,11 +6,12 @@
 
 <head>
 	<title>$the_title - $company_name</title>
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	#js ("$javascript_folder/viewport.js")
 
 	$theme.include($top_head_include)
 	
-	#css ("$css_folder/mobile.css")
+	#css ("$css_folder/media_rules.css")
 	
 	#parse ("$full_templates_path/hide_node_info.vm")
 </head>
@@ -42,6 +43,9 @@
 
 			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
+		
+		<div id="debugNode" style="color: #fff;"></div>
+		
 		#parse ("$full_templates_path/tabs.vm")
 	</div>
 
