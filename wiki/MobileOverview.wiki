@@ -1,0 +1,9 @@
+#summary Mobile Overview.
+
+=Mobile Overview=
+
+The mobile portal consists of a number of dashboard pages with application icons that allow the user to launch each application.
+
+
+
+
