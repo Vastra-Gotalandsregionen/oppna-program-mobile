@@ -10,6 +10,7 @@ When the user clicks (or taps) an icon, the application is launched in an overla
 
 http://oppna-program-mobile.googlecode.com/svn/wiki/images/mobile-icon-overlay.jpg
 
-=Mobile Components=
+=Dashboard pages=
 
-Each dashboard consists of a page in the portal. The dashboard pages are created under a hidden node in the portal layout set:
+Each dashboard consists of a page in the portal. The dashboard pages are created under a hidden page set in the portal layout set:
+http://oppna-program-mobile.googlecode.com/svn/wiki/images/mobile-page-set.jpg
