@@ -2,8 +2,14 @@
 
 =Mobile Overview=
 
-The mobile portal consists of a number of dashboard pages with application icons that allow the user to launch each application.
+The mobile portal consists of a number of dashboard pages with application icons:
 
+http://oppna-program-mobile.googlecode.com/svn/wiki/images/mobile-dashboard.jpg
 
+When the user clicks (or taps) an icon, the application is launched in an overlay on the page:
 
+http://oppna-program-mobile.googlecode.com/svn/wiki/images/mobile-icon-overlay.jpg
 
+=Mobile Components=
+
+Each dashboard consists of a page in the portal. The dashboard pages are created under a hidden node in the portal layout set:
