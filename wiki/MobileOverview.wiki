@@ -22,7 +22,3 @@ http://oppna-program-mobile.googlecode.com/svn/wiki/images/mobile-icon-overlay.j
 Each dashboard consists of a page in the portal. The dashboard pages are created under a hidden page set in the portal layout set:
 
 http://oppna-program-mobile.googlecode.com/svn/wiki/images/mobile-page-set.jpg
-
-
-
-  
