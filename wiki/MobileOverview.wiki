@@ -3,9 +3,9 @@
 =Mobile Overview=
 The mobile portal is comprised by the following set of Liferay plugins:
 
-  * Mobile Icon Portlet, which is an instantiable portlet with settings for name, icon image, url to the widget and counter service.
+  * Mobile Icon Portlet, which is an instantiable portlet with settings for name, icon image, url to the application (widget) and counter service.
   * Mobile Theme, which contains the customization of the look and feel for the pages where the theme is used
-  * Mobile Layouttpl, which contains the layout template used for each dashboard page  
+  * Mobile Layouttpl, which contains the layout template (grid system) used for each dashboard page  
 
 ==App-icon look and feel==
 
